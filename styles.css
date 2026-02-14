@@ -343,7 +343,7 @@ header h1 {
   background-position: center;
   transition: transform 0.3s ease !important;
   transform-origin: center center;
-  clip-path: inset(20%);
+  clip-path: inset(8% 5% 12% 5%);
 }
 
 .moleskine-notebook:hover {
@@ -483,7 +483,7 @@ header h1 {
   pointer-events: auto;
   transition: transform 0.3s ease !important;
   transform-origin: center center;
-  clip-path: inset(20%);
+  clip-path: inset(8% 5% 12% 5%);
 }
 
 .diary-image:hover {
