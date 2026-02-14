@@ -737,12 +737,12 @@ video {
   left: 50%;
   width: 560px;
   height: 800px;
-  background-image: url('assets/img/toshiba1.jpg');
+  background-image: url('assets/img/toshiba1.png');
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
   z-index: 50;
-  pointer-events: auto;
+  pointer-events: none;
   transform: translateX(-50%) translateY(-50%);
   filter: drop-shadow(-8px 12px 20px rgba(0, 0, 0, 0.5)) drop-shadow(-2px 4px 8px rgba(0, 0, 0, 0.3));
 }
