@@ -422,6 +422,12 @@ video {
   justify-content: center;
   z-index: 5;
   pointer-events: auto;
+  transition: transform 0.3s ease !important;
+  transform-origin: center center;
+}
+
+.toshiba-image:hover {
+  transform: scale(1.15) !important;
 }
 
 .toshiba-layer {
