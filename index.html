@@ -147,12 +147,16 @@
 
             // Update all translatable elements
             const workText = document.querySelector('.work-text');
+            const workTextCopy = document.querySelector('.work-text-copy');
             const otherText = document.querySelector('.other-text');
             const aboutText = document.querySelector('.about-text');
             const langButtons = document.querySelectorAll('.lang-btn');
 
             if (workText) {
                 workText.textContent = translations[lang]['WORK'];
+            }
+            if (workTextCopy) {
+                workTextCopy.textContent = translations[lang]['WORK'];
             }
             if (otherText) {
                 otherText.innerHTML = createColoredSpans(translations[lang]['...aaand not work?']);
