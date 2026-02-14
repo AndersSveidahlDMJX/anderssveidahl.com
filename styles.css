@@ -410,13 +410,7 @@ header h1 {
   align-items: center;
   justify-content: center;
   z-index: 5;
-  pointer-events: auto;
-  transition: transform 0.3s ease !important;
-  transform-origin: center center;
-}
-
-.toshiba-image:hover {
-  transform: scale(1.15) !important;
+  pointer-events: none;
 }
 
 @keyframes show-toshiba-2 {
@@ -444,8 +438,9 @@ header h1 {
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
-  pointer-events: none;
+  pointer-events: auto;
   transform-origin: center center;
+  cursor: pointer;
 }
 
 .toshiba-layer-1 {
@@ -463,13 +458,15 @@ header h1 {
   background-image: url('assets/img/toshiba2.png');
 }
 
-.toshiba-image:hover .toshiba-layer-1 {
+.toshiba-image:hover .toshiba-layer-1,
+.toshiba-layer-1:hover {
   display: block;
   transform: scale(1.15) !important;
   animation: show-toshiba-1 2s linear 0.3s infinite !important;
 }
 
-.toshiba-image:hover .toshiba-layer-2 {
+.toshiba-image:hover .toshiba-layer-2,
+.toshiba-layer-2:hover {
   transform: scale(1.15) !important;
   animation: show-toshiba-2 2s linear 0.3s infinite !important;
 }
