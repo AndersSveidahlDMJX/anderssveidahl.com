@@ -578,12 +578,11 @@ video {
   font-weight: 400;
   text-align: center;
   color: #000000;
-  white-space: pre-wrap;
-  width: 400px;
-  min-height: 60px;
-  text-align: center;
+  white-space: nowrap;
+  display: inline-block;
   background-color: #FFFFFF;
-  padding: 5px 8px;
+  padding: 3px 6px;
+  overflow: hidden;
   transform: translateY(15px);
   opacity: 0.8;
   transition: opacity 0.3s ease;
@@ -591,7 +590,8 @@ video {
   position: fixed;
   left: 50%;
   top: calc(55% + 10px);
-  margin-left: -200px;
+  transform: translateX(-50%) translateY(15px);
+  line-height: 1.2;
 }
 
 .about-text {
