@@ -553,25 +553,6 @@ video {
   will-change: transform;
 }
 
-.other-text {
-  font-size: 1.335rem;
-  font-weight: 100;
-  font-style: italic;
-  font-family: "Comic Sans MS", cursive;
-  white-space: pre-wrap;
-  width: 400px;
-  min-height: 60px;
-  text-align: center;
-  transform: translateY(15px);
-  opacity: 0.8;
-  transition: opacity 0.3s ease;
-  will-change: opacity;
-  position: fixed;
-  left: 50%;
-  top: 55%;
-  margin-left: -200px;
-}
-
 .work-text-copy {
   font-size: 1.335rem;
   font-family: "Impact Label", Impact, "Arial Black", sans-serif !important;
@@ -581,7 +562,7 @@ video {
   white-space: nowrap;
   display: inline-block;
   background-color: #FFFFFF;
-  padding: 2px 3px;
+  padding: 2px 3px -2px -2px;
   overflow: hidden;
   line-height: 1;
   opacity: 0.8;
