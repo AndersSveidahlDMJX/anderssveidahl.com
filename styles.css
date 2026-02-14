@@ -513,8 +513,8 @@ video {
 
 .work-text {
   font-size: 7rem !important;
-  font-family: "Impact Label", sans-serif !important;
-  font-weight: 400;
+  font-family: "Impact Label", Impact, "Arial Black", sans-serif !important;
+  font-weight: 700;
   text-align: center;
   color: #FFFFFF;
   white-space: nowrap;
@@ -538,9 +538,9 @@ video {
 }
 
 .work-text.playzone-mode {
-  font-family: "Impact Label", "Fugaz One", sans-serif !important;
+  font-family: "Impact Label", Impact, "Arial Black", sans-serif !important;
   font-size: 1.3em !important;
-  font-weight: 400;
+  font-weight: 700;
   will-change: transform;
 }
 
