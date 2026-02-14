@@ -412,7 +412,7 @@ header h1 {
   align-items: center;
   justify-content: center;
   z-index: 5;
-  pointer-events: auto;
+  pointer-events: none;
 }
 
 @keyframes show-toshiba-1 {
@@ -465,14 +465,11 @@ header h1 {
   will-change: transform;
 }
 
-.toshiba-image:hover .toshiba-layer-1,
 .toshiba-layer-1:hover {
   display: block;
   animation: show-toshiba-1 2s linear 0.3s infinite !important;
 }
 
-.toshiba-image:hover .toshiba-layer-1,
-.toshiba-image:hover .toshiba-layer-2,
 .toshiba-layer-1:hover,
 .toshiba-layer-2:hover {
   transform: scale(1.15) !important;
