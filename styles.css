@@ -434,7 +434,7 @@ header h1 {
   transform-origin: center center;
   cursor: pointer;
   clip-path: polygon(8% 5%, 92% 5%, 92% 95%, 8% 95%);
-  transition: transform 0.3s ease !important;
+  transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
 }
 
 .toshiba-layer-1 {
@@ -447,6 +447,7 @@ header h1 {
   background-position: center;
   background-image: url('assets/img/toshiba1.png');
   z-index: 2;
+  opacity: 0;
 }
 
 .toshiba-layer-2 {
@@ -457,7 +458,7 @@ header h1 {
 .toshiba-image:hover .toshiba-layer-1,
 .toshiba-layer-1:hover {
   display: block;
-  animation: show-toshiba-1 2s linear 0.3s infinite !important;
+  animation: show-toshiba-1 2s linear 0.6s infinite !important;
 }
 
 .toshiba-image:hover .toshiba-layer-1,
