@@ -471,10 +471,12 @@ header h1 {
 
 .toshiba-image:hover .toshiba-layer-1 {
   display: block;
+  transform: scale(1.15) !important;
   animation: toshiba-flip 2s ease-in-out 0.3s infinite reverse !important;
 }
 
 .toshiba-image:hover .toshiba-layer-2 {
+  transform: scale(1.15) !important;
   animation: toshiba-flip 2s ease-in-out 0.3s infinite !important;
 }
 
