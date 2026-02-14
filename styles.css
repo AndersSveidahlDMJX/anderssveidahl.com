@@ -433,7 +433,7 @@ header h1 {
   pointer-events: auto;
   transform-origin: center center;
   cursor: pointer;
-  clip-path: inset(20%);
+  clip-path: inset(5%);
 }
 
 .toshiba-layer-1 {
