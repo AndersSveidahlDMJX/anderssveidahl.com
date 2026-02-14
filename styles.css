@@ -572,6 +572,26 @@ video {
   margin-left: -200px;
 }
 
+.work-text-copy {
+  font-size: 1.335rem;
+  font-family: "Impact Label", Impact, "Arial Black", sans-serif !important;
+  font-weight: 400;
+  text-align: center;
+  color: #000000;
+  white-space: pre-wrap;
+  width: 400px;
+  min-height: 60px;
+  text-align: center;
+  transform: translateY(15px);
+  opacity: 0.8;
+  transition: opacity 0.3s ease;
+  will-change: opacity;
+  position: fixed;
+  left: 50%;
+  top: calc(55% + 10px);
+  margin-left: -200px;
+}
+
 .about-text {
   font-size: 1.335rem;
   opacity: 0.8;
