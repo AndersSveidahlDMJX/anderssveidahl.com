@@ -503,8 +503,8 @@ video {
 
 .work-text {
   font-size: 4rem !important;
-  font-family: "Roboto", sans-serif;
-  font-weight: 400;
+  font-family: "Caveat", cursive;
+  font-weight: 700;
   text-align: center;
   transform: translateY(-70px);
   white-space: nowrap;
