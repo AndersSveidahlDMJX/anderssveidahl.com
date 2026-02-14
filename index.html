@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anders Sveidahl | Creative Portfolio & Designer</title>
+    <meta name="description" content="Portfolio of Anders Sveidahl. Explore creative work, design projects, and interactive experiences.">
+    <meta name="keywords" content="Anders Sveidahl, portfolio, designer, creative, work">
+    <meta name="author" content="Anders Sveidahl">
+    
+    <!-- Open Graph Tags for Social Media -->
+    <meta property="og:title" content="Anders Sveidahl | Creative Portfolio & Designer">
+    <meta property="og:description" content="Portfolio of Anders Sveidahl. Explore creative work, design projects, and interactive experiences.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://anderssveidahl.com">
+    
+    <!-- Schema.org Markup -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Anders Sveidahl",
+      "url": "https://anderssveidahl.com",
+      "sameAs": [
+        "https://twitter.com/",
+        "https://instagram.com/",
+        "https://linkedin.com/in/"
+      ],
+      "jobTitle": "Designer & Creative Developer",
+      "description": "Creative portfolio showcasing design and development work"
+    }
+    </script>
+    
+    <link rel="canonical" href="https://anderssveidahl.com">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <header>
+        <div></div>
+        <h1><span style="color: #FFFFFF;">A</span><span style="color: #FFFFFF;">n</span><span style="color: #FFFFFF;">d</span><span style="color: #FFFFFF;">e</span><span style="color: #FFFFFF;">r</span><span style="color: #FFFFFF;">s</span><span style="color: #FFFFFF;"> </span><span style="color: #FFFFFF;">S</span><span style="color: #FFFFFF;">v</span><span style="color: #FFFFFF;">e</span><span style="color: #FFFFFF;">i</span><span style="color: #FFFFFF;">d</span><span style="color: #FFFFFF;">a</span><span style="color: #FFFFFF;">h</span><span style="color: #FFFFFF;">l</span></h1>
+        <div class="language-switch">
+            <button class="lang-btn active" data-lang="en">EN</button>
+            <span class="lang-divider">/</span>
+            <button class="lang-btn" data-lang="da">DA</button>
+        </div>
+    </header>
+    
+    <!-- 
+    LAYOUT 3 SPECIFICATION - SAVED
+    =============================
+    Timing Sequence on Page Load:
+    - 0s: Black screen
+    - 0.5s: Anders Sveidahl header appears (fade in, Times New Roman, white, all letters)
+    - 2s: WORK text appears (fade in, Times New Roman, white)
+    - 3s: About text appears (fade in)
+    - 4s: ...aaand not work? text appears (letter-by-letter reveal, 250ms per letter)
+    
+    Text Styling:
+    - Anders Sveidahl: Times New Roman, white, centered, never dims
+    - WORK: Times New Roman, white, centered, dims to 0.8 when not hovered
+    - About: Centered, dims to 0.8 when not hovered
+    - ...aaand not work?: Comic Sans MS, italic, centered, multicolor (Anders Sveidahl palette), dims to 0.8 when not hovered
+    
+    Hover Effects:
+    - WORK hover: Shows carousel (1s fade), brightens WORK to 1.0, dims others to 0.8
+    - ...aaand not work? hover: Changes WORK text to "Huh?" (Playzone font) with letter animation, brightens ...aaand not work? to 1.0, dims others to 0.8
+    - About hover: Brightens about to 1.0, dims others to 0.8
+    
+    Default State: All text dims to 0.8 opacity
+    
+    Media: Carousel on WORK hover, emoji 🤨 on ...aaand not work? hover
+    -->
+    <div class="container layout3">
+        <div class="carousel-container layout3">
+            <div class="carousel-slide" style="background-image: url('assets/img/img_1.jpg');"></div>
+            <div class="carousel-slide" style="background-image: url('assets/img/img_2.jpg');"></div>
+            <div class="carousel-slide" style="background-image: url('assets/img/img_3.jpeg');"></div>
+            <div class="carousel-slide" style="background-image: url('assets/img/img_4.avif');"></div>
+            <div class="carousel-slide" style="background-image: url('assets/img/img_5.webp');"></div>
+            <div class="carousel-slide" style="background-image: url('assets/img/img_6.jpg');"></div>
+        </div>
+        <video id="bg-video" class="lower-half-video layout3" autoplay muted playsinline webkit-playsinline>
+            <source src="assets/mp4/smoke_background.mp4" type="video/mp4">
+        </video>
+        
+        <div class="text-container layout3">
+            <div class="main-content">
+                <a href="work.html" class="text-link work-text" data-en-text="WORK" data-da-text="ARBEJDE"><span style="color: #FFFFFF;">W</span><span style="color: #FFFFFF;">O</span><span style="color: #FFFFFF;">R</span><span style="color: #FFFFFF;">K</span></a>
+                <a href="other.html" class="text-link other-text" data-en-text="...aaand not work?" data-da-text="...oooog ikke arbejde?"></a>
+            </div>
+            <footer class="footer-section">
+                <a href="about.html" class="text-link about-text" data-en-text="about" data-da-text="om">about</a>
+            </footer>
+        </div>
+    </div>
+    <script>
+        // Language translations
+        const translations = {
+            en: {
+                'WORK': 'WORK',
+                '...aaand not work?': '...aaand not work?',
+                'about': 'about',
+                'Huh?': 'Huh?'
+            },
+            da: {
+                'WORK': 'ARBEJDE',
+                '...aaand not work?': '...oooog ikke arbejde?',
+                'about': 'om',
+                'Huh?': 'Hva?'
+            }
+        };
+
+        // Color palette for multicolor text
+        const colors = ['#FF0000', '#FFA500', '#FFFF00', '#00FF00', '#0000FF', '#4B0082', '#FF1493', '#FF6347', '#FFD700', '#32CD32', '#87CEEB', '#FF69B4', '#20B2AA', '#FF8C00', '#9370DB'];
+
+        // Function to create colored spans for text
+        function createColoredSpans(text) {
+            return text.split('').map((char, index) => {
+                const color = colors[index % colors.length];
+                return `<span style="color: ${color};">${char}</span>`;
+            }).join('');
+        }
+
+        // Language switching functionality
+        let currentLanguage = localStorage.getItem('language') || 'en';
+
+        function setLanguage(lang) {
+            currentLanguage = lang;
+            localStorage.setItem('language', lang);
+
+            // Update all translatable elements
+            const workText = document.querySelector('.work-text');
+            const otherText = document.querySelector('.other-text');
+            const aboutText = document.querySelector('.about-text');
+            const langButtons = document.querySelectorAll('.lang-btn');
+
+            if (workText) {
+                workText.textContent = translations[lang]['WORK'];
+            }
+            if (otherText) {
+                otherText.innerHTML = createColoredSpans(translations[lang]['...aaand not work?']);
+            }
+            if (aboutText) {
+                aboutText.textContent = translations[lang]['about'];
+            }
+
+            // Update active button
+            langButtons.forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.dataset.lang === lang) {
+                    btn.classList.add('active');
+                }
+            });
+        }
+
+        // Language button event listeners
+        document.addEventListener('DOMContentLoaded', function() {
+            const langButtons = document.querySelectorAll('.lang-btn');
+            langButtons.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    setLanguage(this.dataset.lang);
+                });
+            });
+
+            // Set initial language
+            setLanguage(currentLanguage);
+        });
+
+        // Letter-by-letter reveal effect on page load
+        document.addEventListener('DOMContentLoaded', function () {
+            const headerH1 = document.querySelector('header h1');
+            const workText = document.querySelector('.work-text');
+            const otherText = document.querySelector('.other-text');
+            const aboutText = document.querySelector('.about-text');
+            
+            // Initially hide all text elements
+            if (headerH1) headerH1.style.opacity = '0';
+            if (workText) workText.style.opacity = '0';
+            if (aboutText) aboutText.style.opacity = '0';
+            if (otherText) otherText.style.opacity = '0';
+            
+            function revealLetters(element, letterDuration, startDelay = 0) {
+                // Check if this element has colored spans (work-text or other-text)
+                if (element.classList.contains('work-text') || element.classList.contains('other-text')) {
+                    // For colored span elements, preserve the HTML structure
+                    const spans = element.querySelectorAll('span');
+                    spans.forEach(span => {
+                        span.style.opacity = '0';
+                    });
+                    
+                    let charIndex = 0;
+                    spans.forEach((span, spanIndex) => {
+                        const spanText = span.textContent;
+                        [...spanText].forEach((letter, letterIndex) => {
+                            setTimeout(() => {
+                                span.style.opacity = '1';
+                            }, startDelay + letterDuration * charIndex);
+                            charIndex++;
+                        });
+                    });
+                    
+                    return startDelay + letterDuration * charIndex;
+                } else {
+                    // Original logic for other text elements
+                    const text = element.textContent;
+                    element.textContent = '';
+                    
+                    [...text].forEach((letter, index) => {
+                        setTimeout(() => {
+                            element.textContent += letter;
+                        }, startDelay + letterDuration * index);
+                    });
+                    
+                    // Return the total duration of this animation
+                    return startDelay + letterDuration * text.length;
+                }
+            }
+            
+            // Timing sequence:
+            // 0.5s: Anders Sveidahl revealed
+            setTimeout(() => {
+                if (headerH1) {
+                    headerH1.style.transition = 'opacity 0.5s ease';
+                    headerH1.style.opacity = '1';
+                }
+            }, 500);
+            
+            // 1.5s: About revealed
+            setTimeout(() => {
+                if (aboutText) {
+                    aboutText.style.transition = 'opacity 0.5s ease';
+                    aboutText.style.opacity = '1';
+                }
+            }, 1500);
+            
+            // 2.5s: Work revealed with tilt shift effect on about and ...aaand not work?
+            setTimeout(() => {
+                if (workText) {
+                    workText.style.transition = 'opacity 0.5s ease';
+                    workText.style.opacity = '1';
+                }
+                // Apply tilt shift rotation effect to other elements
+                if (aboutText) {
+                    aboutText.style.animation = 'tiltShift 0.6s ease-in-out';
+                }
+                if (otherText) {
+                    otherText.style.animation = 'tiltShift 0.6s ease-in-out';
+                }
+            }, 2500);
+            
+            // 3.5s: ...aaand not work? revealed with letter-by-letter effect
+            setTimeout(() => {
+                if (otherText) {
+                    otherText.style.transition = 'opacity 0.5s ease';
+                    otherText.style.opacity = '1';
+                    const letterDuration = 150; // 40% faster (250 * 0.6 = 150ms)
+                    const animationDuration = revealLetters(otherText, letterDuration, 0);
+                    
+                    // After reveal completes, dim all text elements
+                    setTimeout(() => {
+                        if (headerH1) headerH1.style.opacity = '1'; // Header never dims
+                        if (workText) workText.style.opacity = '0.5';
+                        if (otherText) otherText.style.opacity = '0.5';
+                        if (aboutText) aboutText.style.opacity = '0.5';
+                    }, animationDuration);
+                }
+            }, 3500);
+            
+            // Add hover effect for work text - DVD bouncing animation
+            if (workText) {
+                let dvdAnimation = null;
+                let dvdElement = null;
+                
+                workText.addEventListener('mouseenter', function() {
+                    const slides = document.querySelectorAll('.carousel-slide');
+                    
+                    // Create the bouncing image element
+                    dvdElement = document.createElement('div');
+                    dvdElement.className = 'dvd-bouncer';
+                    dvdElement.style.position = 'fixed';
+                    dvdElement.style.width = '150px';
+                    dvdElement.style.height = '150px';
+                    dvdElement.style.zIndex = '9999';
+                    dvdElement.style.borderRadius = '8px';
+                    dvdElement.style.backgroundSize = 'cover';
+                    dvdElement.style.backgroundPosition = 'center';
+                    dvdElement.style.pointerEvents = 'none';
+                    
+                    document.body.appendChild(dvdElement);
+                    
+                    // Initialize position and velocity
+                    // Start within 10-50px of a corner
+                    const corners = [
+                        { x: 0, y: 0 }, // top-left
+                        { x: window.innerWidth - 150, y: 0 }, // top-right
+                        { x: 0, y: window.innerHeight - 150 }, // bottom-left
+                        { x: window.innerWidth - 150, y: window.innerHeight - 150 } // bottom-right
+                    ];
+                    
+                    const selectedCorner = corners[Math.floor(Math.random() * corners.length)];
+                    // Start slightly offset from corner
+                    let x = selectedCorner.x + (Math.random() * 40 + 10); // 10-50px from corner
+                    let y = selectedCorner.y + (Math.random() * 40 + 10);
+                    
+                    // Clamp to valid bounds
+                    x = Math.max(0, Math.min(x, window.innerWidth - 150));
+                    y = Math.max(0, Math.min(y, window.innerHeight - 150));
+                    
+                    // Diagonal direction with some randomness
+                    const speed = 4; // pixels per frame
+                    // Pick a general diagonal direction (roughly toward opposite corner)
+                    let vx, vy;
+                    const quadrant = Math.floor(Math.random() * 4);
+                    switch(quadrant) {
+                        case 0: // Move right-down
+                            vx = (Math.random() * 1.5 + 2.5);
+                            vy = (Math.random() * 1.5 + 2.5);
+                            break;
+                        case 1: // Move left-down
+                            vx = -(Math.random() * 1.5 + 2.5);
+                            vy = (Math.random() * 1.5 + 2.5);
+                            break;
+                        case 2: // Move right-up
+                            vx = (Math.random() * 1.5 + 2.5);
+                            vy = -(Math.random() * 1.5 + 2.5);
+                            break;
+                        case 3: // Move left-up
+                            vx = -(Math.random() * 1.5 + 2.5);
+                            vy = -(Math.random() * 1.5 + 2.5);
+                            break;
+                    }
+                    // Normalize to maintain constant speed
+                    const magnitude = Math.sqrt(vx * vx + vy * vy);
+                    vx = (vx / magnitude) * speed;
+                    vy = (vy / magnitude) * speed;
+                    let currentImageIndex = Math.floor(Math.random() * slides.length);
+                    
+                    // Set initial image
+                    dvdElement.style.backgroundImage = slides[currentImageIndex].style.backgroundImage;
+                    
+                    // Animation loop
+                    const animate = () => {
+                        x += vx;
+                        y += vy;
+                        
+                        // Check for collisions with edges
+                        if (x <= 0 || x + 150 >= window.innerWidth) {
+                            vx = -vx;
+                            // Change image on bounce
+                            currentImageIndex = (currentImageIndex + 1) % slides.length;
+                            dvdElement.style.backgroundImage = slides[currentImageIndex].style.backgroundImage;
+                        }
+                        
+                        if (y <= 0 || y + 150 >= window.innerHeight) {
+                            vy = -vy;
+                            // Change image on bounce
+                            currentImageIndex = (currentImageIndex + 1) % slides.length;
+                            dvdElement.style.backgroundImage = slides[currentImageIndex].style.backgroundImage;
+                        }
+                        
+                        // Clamp position to viewport
+                        x = Math.max(0, Math.min(x, window.innerWidth - 150));
+                        y = Math.max(0, Math.min(y, window.innerHeight - 150));
+                        
+                        dvdElement.style.left = x + 'px';
+                        dvdElement.style.top = y + 'px';
+                        
+                        dvdAnimation = requestAnimationFrame(animate);
+                    };
+                    
+                    dvdAnimation = requestAnimationFrame(animate);
+                    
+                    // Brighten work, dim others
+                    if (workText) workText.style.opacity = '1';
+                    if (otherText) otherText.style.opacity = '0.5';
+                    if (aboutText) aboutText.style.opacity = '0.5';
+                });
+                
+                workText.addEventListener('mouseleave', function() {
+                    // Stop animation
+                    if (dvdAnimation) {
+                        cancelAnimationFrame(dvdAnimation);
+                        dvdAnimation = null;
+                    }
+                    
+                    // Remove DVD element immediately
+                    if (dvdElement) {
+                        dvdElement.remove();
+                        dvdElement = null;
+                    }
+                    
+                    // Dim all text
+                    if (workText) workText.style.opacity = '0.5';
+                    if (otherText) otherText.style.opacity = '0.5';
+                    if (aboutText) aboutText.style.opacity = '0.5';
+                });
+            }
+            
+            // Add hover effect for other text (...not work?)
+            if (otherText) {
+                otherText.addEventListener('mouseenter', function() {
+                    // Brighten other text, dim others (but NOT work when it's "Huh?")
+                    if (otherText) otherText.style.opacity = '1';
+                    if (aboutText) aboutText.style.opacity = '0.5';
+                    
+                    // Change work text to "Huh?" with reverse reveal
+                    const spans = workText.querySelectorAll('span');
+                    const letterDuration = 150;
+                    
+                    // Fade out existing letters
+                    spans.forEach((span, index) => {
+                        setTimeout(() => {
+                            span.style.opacity = '0';
+                        }, index * letterDuration);
+                    });
+                    
+                    // After all letters fade out, change to "Huh?"
+                    setTimeout(() => {
+                        workText.innerHTML = '<span style="color: #FF0000;">H</span><span style="color: #FFA500;">u</span><span style="color: #FFFF00;">h</span><span style="color: #00FF00;">?</span>';
+                        workText.style.fontFamily = '"Playzone", cursive';
+                        // Keep Huh? at full opacity (never dim)
+                        workText.style.opacity = '1';
+                        const newSpans = workText.querySelectorAll('span');
+                        newSpans.forEach((span, index) => {
+                            span.style.opacity = '0';
+                            setTimeout(() => {
+                                span.style.opacity = '1';
+                            }, index * letterDuration);
+                        });
+                    }, spans.length * letterDuration);
+                    
+                    // After Huh? animation completes, dim all text except Huh?
+                    setTimeout(() => {
+                        if (otherText) otherText.style.opacity = '0.5';
+                        if (aboutText) aboutText.style.opacity = '0.5';
+                        // workText stays at 1.0 (never dims when showing Huh?)
+                    }, spans.length * letterDuration + letterDuration * 4);
+                });
+                
+                otherText.addEventListener('mouseleave', function() {
+                    // Remove all emoji popups if any exist
+                    const emojiPopups = document.querySelectorAll('.emoji-popup');
+                    emojiPopups.forEach((popup) => {
+                        popup.remove();
+                    });
+                    
+                    // Dim all text
+                    if (workText) workText.style.opacity = '0.5';
+                    if (otherText) otherText.style.opacity = '0.5';
+                    if (aboutText) aboutText.style.opacity = '0.5';
+                    
+                    // Change "Huh?" back to current language work text with reverse reveal
+                    const spans = workText.querySelectorAll('span');
+                    const letterDuration = 150;
+                    
+                    // Fade out existing letters
+                    spans.forEach((span, index) => {
+                        setTimeout(() => {
+                            span.style.opacity = '0';
+                        }, index * letterDuration);
+                    });
+                    
+                    // After all letters fade out, change back to work text in current language
+                    setTimeout(() => {
+                        const workWord = translations[currentLanguage]['WORK'];
+                        workText.textContent = workWord;
+                        workText.style.fontFamily = '"Times New Roman", serif';
+                        workText.style.opacity = '0.5';
+                        const newSpans = workText.querySelectorAll('span');
+                        newSpans.forEach((span, index) => {
+                            span.style.opacity = '0';
+                            setTimeout(() => {
+                                span.style.opacity = '1';
+                            }, index * letterDuration);
+                        });
+                    }, spans.length * letterDuration);
+                });
+            }
+            
+            // Add hover effect for about text
+            if (aboutText) {
+                aboutText.addEventListener('mouseenter', function() {
+                    // Brighten about, dim others
+                    if (workText) workText.style.opacity = '0.5';
+                    if (otherText) otherText.style.opacity = '0.5';
+                    if (aboutText) aboutText.style.opacity = '1';
+                });
+                
+                aboutText.addEventListener('mouseleave', function() {
+                    // Dim all text
+                    if (workText) workText.style.opacity = '0.5';
+                    if (otherText) otherText.style.opacity = '0.5';
+                    if (aboutText) aboutText.style.opacity = '0.5';
+                });
+            }
+        });
+
+        // Safari and cross-browser video autoplay with reverse looping
+        document.addEventListener('DOMContentLoaded', function () {
+            const video = document.getElementById('bg-video');
+            const container = document.querySelector('.container');
+            
+            let isReversing = false; // Track direction
+            const startTime = 4;
+            const endTime = 11;
+            const speed = 0.5; // Playback speed for reverse effect
+            
+            if (video) {
+                // Set video parameters
+                video.loop = false;
+                video.muted = true;
+                video.currentTime = startTime;
+                video.playbackRate = 1;
+                
+                // Safari requires this
+                video.setAttribute('playsinline', '');
+                video.setAttribute('webkit-playsinline', '');
+                
+                // Handle reverse looping
+                video.addEventListener('timeupdate', function() {
+                    if (isReversing) {
+                        // Playing in reverse
+                        video.currentTime -= speed * 0.016; // Approximate frame time
+                        if (video.currentTime <= startTime) {
+                            video.currentTime = startTime;
+                            isReversing = false; // Switch to forward
+                            video.play();
+                        }
+                    } else {
+                        // Playing forward
+                        if (video.currentTime >= endTime) {
+                            video.currentTime = endTime;
+                            isReversing = true; // Switch to reverse
+                            video.pause();
+                        }
+                    }
+                });
+                
+                // Try to play
+                const playPromise = video.play();
+                
+                if (playPromise !== undefined) {
+                    playPromise.then(() => {
+                        console.log('Video is playing');
+                    }).catch(error => {
+                        console.log('Autoplay failed:', error);
+                        
+                        // Simulate click on container to trigger playback
+                        if (container) {
+                            container.click();
+                        }
+                        
+                        // Fallback: play on user interaction
+                        ['click', 'touchstart'].forEach(event => {
+                            document.addEventListener(event, function playVideo() {
+                                video.play();
+                                document.removeEventListener(event, playVideo);
+                            }, { once: true });
+                        });
+                    });
+                }
+            }
+        });
+        
+        // Additional Safari support - try after page fully loads
+        window.addEventListener('load', function() {
+            const video = document.getElementById('bg-video');
+            const videoContainer = document.querySelector('.lower-half.smaller');
+            
+            if (video && video.paused) {
+                video.play().catch(err => {
+                    console.log('Load event play failed:', err);
+                    // Auto-click the container as last resort
+                    if (videoContainer) {
+                        videoContainer.click();
+                    }
+                });
+            }
+        });
+    </script>
+    <script src="carousel.js"></script>
+</body>
+
+</html>
