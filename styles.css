@@ -520,9 +520,9 @@ video {
   transition: opacity 0.3s ease;
   will-change: transform;
   position: fixed;
-  bottom: 120px;
-  left: 100px;
-  transform: rotate(-2deg);
+  bottom: 240px;
+  left: 200px;
+  transform: translate(-50%, 50%) rotate(-2deg);
   z-index: 101;
   letter-spacing: 2px;
 }
