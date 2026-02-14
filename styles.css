@@ -343,6 +343,7 @@ header h1 {
   background-position: center;
   transition: transform 0.3s ease !important;
   transform-origin: center center;
+  clip-path: inset(20%);
 }
 
 .moleskine-notebook:hover {
@@ -432,6 +433,7 @@ header h1 {
   pointer-events: auto;
   transform-origin: center center;
   cursor: pointer;
+  clip-path: inset(20%);
 }
 
 .toshiba-layer-1 {
@@ -481,6 +483,7 @@ header h1 {
   pointer-events: auto;
   transition: transform 0.3s ease !important;
   transform-origin: center center;
+  clip-path: inset(20%);
 }
 
 .diary-image:hover {
