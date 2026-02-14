@@ -483,7 +483,7 @@ header h1 {
   pointer-events: auto;
   transition: transform 0.3s ease !important;
   transform-origin: center center;
-  clip-path: inset(8% 5% 12% 5%);
+  clip-path: inset(15% 5% 18% 5%);
 }
 
 .diary-image:hover {
