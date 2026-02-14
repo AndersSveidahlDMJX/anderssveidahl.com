@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
+  <!-- Fly body -->
+  <ellipse cx="64" cy="70" rx="18" ry="25" fill="#2a2a2a"/>
+  
+  <!-- Fly head -->
+  <circle cx="64" cy="35" r="15" fill="#1a1a1a"/>
+  
+  <!-- Fly eyes -->
+  <circle cx="58" cy="32" r="4" fill="#fff"/>
+  <circle cx="70" cy="32" r="4" fill="#fff"/>
+  <circle cx="58" cy="32" r="2" fill="#000"/>
+  <circle cx="70" cy="32" r="2" fill="#000"/>
+  
+  <!-- Left wings -->
+  <ellipse cx="50" cy="55" rx="10" ry="20" fill="#4a4a4a" opacity="0.7" transform="rotate(-35 50 55)"/>
+  
+  <!-- Right wings -->
+  <ellipse cx="78" cy="55" rx="10" ry="20" fill="#4a4a4a" opacity="0.7" transform="rotate(35 78 55)"/>
+  
+  <!-- Front left leg -->
+  <line x1="55" y1="90" x2="45" y2="105" stroke="#2a2a2a" stroke-width="2" stroke-linecap="round"/>
+  
+  <!-- Front right leg -->
+  <line x1="73" y1="90" x2="83" y2="105" stroke="#2a2a2a" stroke-width="2" stroke-linecap="round"/>
+  
+  <!-- Back left leg -->
+  <line x1="52" y1="92" x2="38" y2="110" stroke="#2a2a2a" stroke-width="2" stroke-linecap="round"/>
+  
+  <!-- Back right leg -->
+  <line x1="76" y1="92" x2="90" y2="110" stroke="#2a2a2a" stroke-width="2" stroke-linecap="round"/>
+</svg>
