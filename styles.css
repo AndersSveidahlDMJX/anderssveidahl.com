@@ -590,7 +590,7 @@ video {
   transition: opacity 0.3s ease;
   will-change: opacity;
   position: fixed;
-  left: 16.67%;
+  left: calc(16.67% - 450px);
   top: calc(50% + 50px);
   transform: translateX(-50%) translateY(-50%);
 }
