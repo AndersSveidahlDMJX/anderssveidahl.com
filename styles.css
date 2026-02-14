@@ -703,11 +703,12 @@ video {
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
-  transition: opacity 0.3s ease;
+  transition: filter 0.3s ease;
+  filter: brightness(1);
 }
 
 .moleskine-notebook:hover {
-  opacity: 0.8;
+  filter: brightness(1.3);
 }
 
 .moleskine-link {
@@ -782,12 +783,14 @@ video {
   background-repeat: no-repeat;
   background-position: center;
   cursor: pointer;
-  transition: transform 0.3s ease;
+  transition: transform 0.3s ease, filter 0.3s ease;
   pointer-events: auto;
+  filter: brightness(1);
 }
 
 .toshiba-layer:hover {
-  transform: scale(1.1);
+  transform: scale(1.15);
+  filter: brightness(1.2);
 }
 
 .toshiba-layer-1 {
@@ -815,11 +818,12 @@ video {
   background-position: center;
   z-index: 5;
   pointer-events: auto;
-  transition: opacity 0.3s ease;
+  transition: filter 0.3s ease;
+  filter: brightness(1);
 }
 
 .diary-image:hover {
-  opacity: 0.8;
+  filter: brightness(1.3);
 }
 
 /* Overlay Text Elements */
