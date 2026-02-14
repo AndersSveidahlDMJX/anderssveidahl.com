@@ -522,7 +522,7 @@ video {
   white-space: nowrap;
   display: inline-block;
   width: auto;
-  overflow: visible;
+  overflow: hidden;
   margin: 0;
   opacity: 1;
   transition: opacity 0.3s ease;
