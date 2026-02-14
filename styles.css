@@ -703,7 +703,6 @@ video {
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
-  background-color: rgba(255, 0, 0, 0.05);
   transition: transform 0.3s ease !important;
   transform-origin: center center;
 }
@@ -774,7 +773,6 @@ video {
   justify-content: center;
   z-index: 5;
   pointer-events: auto;
-  background-color: rgba(0, 255, 0, 0.05);
 }
 
 .toshiba-layer {
@@ -784,7 +782,6 @@ video {
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
-  background-color: rgba(255, 255, 0, 0.1);
   cursor: pointer;
   transition: transform 0.3s ease !important;
   pointer-events: auto;
@@ -818,7 +815,6 @@ video {
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
-  background-color: rgba(0, 0, 255, 0.05);
   z-index: 5;
   pointer-events: auto;
   transition: transform 0.3s ease !important;
