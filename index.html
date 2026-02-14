@@ -182,7 +182,6 @@
             
             // Initially hide all text elements
             if (headerH1) headerH1.style.opacity = '0';
-            if (workText) workText.style.opacity = '0';
             if (aboutText) aboutText.style.opacity = '0';
             if (otherText) otherText.style.opacity = '0';
             
@@ -243,7 +242,7 @@
                     const letterDuration = 150; // 40% faster (250 * 0.6 = 150ms)
                     const animationDuration = revealLetters(otherText, letterDuration, 0);
                     
-                    // After reveal completes, dim other text elements (but not moleskine or workText)
+                    // After reveal completes, dim other text elements (but not moleskine, workText, or headerH1)
                     setTimeout(() => {
                         if (headerH1) headerH1.style.opacity = '1'; // Header never dims
                         if (otherText) otherText.style.opacity = '0.5';
@@ -414,8 +413,7 @@
                         popup.remove();
                     });
                     
-                    // Dim all text
-                    if (workText) workText.style.opacity = '0.5';
+                    // Dim other text (but keep workText bright)
                     if (otherText) otherText.style.opacity = '0.5';
                     if (aboutText) aboutText.style.opacity = '0.5';
                     
@@ -437,7 +435,7 @@
                         // Remove Playzone font class and restore Times New Roman
                         workText.classList.remove('playzone-mode');
                         workText.style.fontFamily = '"Times New Roman", serif';
-                        workText.style.opacity = '0.5';
+                        workText.style.opacity = '1';
                         const newSpans = workText.querySelectorAll('span');
                         newSpans.forEach((span, index) => {
                             span.style.opacity = '0';
@@ -452,15 +450,14 @@
             // Add hover effect for about text
             if (aboutText) {
                 aboutText.addEventListener('mouseenter', function() {
-                    // Brighten about, dim others
-                    if (workText) workText.style.opacity = '0.5';
+                    // Brighten about, dim others (not moleskine or workText)
                     if (otherText) otherText.style.opacity = '0.5';
                     if (aboutText) aboutText.style.opacity = '1';
                 });
                 
                 aboutText.addEventListener('mouseleave', function() {
-                    // Dim all text
-                    if (workText) workText.style.opacity = '0.5';
+                    // Restore text states (workText stays at 1)
+                    if (workText) workText.style.opacity = '1';
                     if (otherText) otherText.style.opacity = '0.5';
                     if (aboutText) aboutText.style.opacity = '0.5';
                 });
