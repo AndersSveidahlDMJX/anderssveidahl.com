@@ -33,25 +33,13 @@
     </script>
     
     <link rel="canonical" href="https://anderssveidahl.com">
-    <link rel="icon" type="image/webp" href="assets/img/fly.webp">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
-    <a href="work.html" class="moleskine-notebook">
-        <span class="moleskine-link work-text" data-en-text="WORK" data-da-text="ARBEJDE"><span style="color: #FFFFFF;">W</span><span style="color: #FFFFFF;">O</span><span style="color: #FFFFFF;">R</span><span style="color: #FFFFFF;">K</span></span>
-    </a>
-    
-    <!-- Diary Image on Opposite Side -->
-    <div class="diary-image"></div>
-    
-    <!-- Toshiba Image in Center -->
-    <div class="toshiba-image">
-      <div class="toshiba-layer toshiba-layer-1"></div>
-      <div class="toshiba-layer toshiba-layer-2"></div>
-    </div>
+    <div class="moleskine-notebook"></div>
     <header>
         <div></div>
         <h1><span style="color: #FFFFFF;">A</span><span style="color: #FFFFFF;">n</span><span style="color: #FFFFFF;">d</span><span style="color: #FFFFFF;">e</span><span style="color: #FFFFFF;">r</span><span style="color: #FFFFFF;">s</span><span style="color: #FFFFFF;"> </span><span style="color: #FFFFFF;">S</span><span style="color: #FFFFFF;">v</span><span style="color: #FFFFFF;">e</span><span style="color: #FFFFFF;">i</span><span style="color: #FFFFFF;">d</span><span style="color: #FFFFFF;">a</span><span style="color: #FFFFFF;">h</span><span style="color: #FFFFFF;">l</span></h1>
@@ -102,8 +90,8 @@
         
         <div class="text-container layout3">
             <div class="main-content">
-                <a href="work.html" class="text-link work-text-copy" data-en-text="WORK" data-da-text="ARBEJDE"></a>
-                <a href="work.html" class="text-link work-text-left" data-en-text="not work" data-da-text="ikke arbejde"></a>
+                <a href="work.html" class="text-link work-text" data-en-text="WORK" data-da-text="ARBEJDE"><span style="color: #FFFFFF;">W</span><span style="color: #FFFFFF;">O</span><span style="color: #FFFFFF;">R</span><span style="color: #FFFFFF;">K</span></a>
+                <a href="other.html" class="text-link other-text" data-en-text="...aaand not work?" data-da-text="...oooog ikke arbejde?"></a>
                 <a href="about.html" class="text-link about-text" data-en-text="about" data-da-text="om"></a>
             </div>
             <footer class="footer-section">
@@ -147,20 +135,15 @@
 
             // Update all translatable elements
             const workText = document.querySelector('.work-text');
-            const workTextCopy = document.querySelector('.work-text-copy');
-            const workTextLeft = document.querySelector('.work-text-left');
+            const otherText = document.querySelector('.other-text');
             const aboutText = document.querySelector('.about-text');
             const langButtons = document.querySelectorAll('.lang-btn');
 
             if (workText) {
                 workText.textContent = translations[lang]['WORK'];
             }
-            if (workTextCopy) {
-                workTextCopy.textContent = translations[lang]['WORK'];
-            }
-            if (workTextLeft) {
-                const textKey = lang === 'en' ? workTextLeft.getAttribute('data-en-text') : workTextLeft.getAttribute('data-da-text');
-                workTextLeft.textContent = textKey;
+            if (otherText) {
+                otherText.innerHTML = createColoredSpans(translations[lang]['...aaand not work?']);
             }
             if (aboutText) {
                 aboutText.textContent = translations[lang]['about'];
@@ -192,15 +175,18 @@
         document.addEventListener('DOMContentLoaded', function () {
             const headerH1 = document.querySelector('header h1');
             const workText = document.querySelector('.work-text');
+            const otherText = document.querySelector('.other-text');
             const aboutText = document.querySelector('.about-text');
             
             // Initially hide all text elements
             if (headerH1) headerH1.style.opacity = '0';
+            if (workText) workText.style.opacity = '0';
             if (aboutText) aboutText.style.opacity = '0';
+            if (otherText) otherText.style.opacity = '0';
             
             function revealLetters(element, letterDuration, startDelay = 0) {
-                // Check if this element has colored spans (work-text)
-                if (element.classList.contains('work-text')) {
+                // Check if this element has colored spans (work-text or other-text)
+                if (element.classList.contains('work-text') || element.classList.contains('other-text')) {
                     // For colored span elements, preserve the HTML structure
                     const spans = element.querySelectorAll('span');
                     spans.forEach(span => {
@@ -239,9 +225,8 @@
             if (headerH1) {
                 headerH1.style.opacity = '1';
             }
-            const moleskine = document.querySelector('.moleskine-notebook');
             if (workText) {
-                workText.style.opacity = '1';
+                workText.style.opacity = '0.5';
             }
             if (aboutText) {
                 aboutText.style.opacity = '0.5';
@@ -255,170 +240,150 @@
                     const letterDuration = 150; // 40% faster (250 * 0.6 = 150ms)
                     const animationDuration = revealLetters(otherText, letterDuration, 0);
                     
-                    // After reveal completes, dim other text elements (but not moleskine, workText, or headerH1)
+                    // After reveal completes, dim all text elements
                     setTimeout(() => {
                         if (headerH1) headerH1.style.opacity = '1'; // Header never dims
+                        if (workText) workText.style.opacity = '0.5';
                         if (otherText) otherText.style.opacity = '0.5';
                         if (aboutText) aboutText.style.opacity = '0.5';
                     }, animationDuration);
                 }
             }, 500);
             
-            // Add hover effect for work text - no DVD animation
+            // Add hover effect for work text - DVD bouncing animation
             if (workText) {
+                let dvdAnimation = null;
+                let dvdElement = null;
+                
                 workText.addEventListener('mouseenter', function() {
-                    // Work text hover - no DVD animation
+                    // Clear any existing animation before starting a new one
+                    if (dvdAnimation) {
+                        clearInterval(dvdAnimation);
+                        dvdAnimation = null;
+                    }
+                    if (dvdElement && dvdElement.parentNode) {
+                        dvdElement.remove();
+                        dvdElement = null;
+                    }
+                    
+                    const slides = document.querySelectorAll('.carousel-slide');
+                    
+                    // Create the bouncing image element
+                    dvdElement = document.createElement('div');
+                    dvdElement.className = 'dvd-bouncer';
+                    dvdElement.style.position = 'fixed';
+                    dvdElement.style.width = '150px';
+                    dvdElement.style.height = '150px';
+                    dvdElement.style.zIndex = '9999';
+                    dvdElement.style.borderRadius = '8px';
+                    dvdElement.style.backgroundSize = 'cover';
+                    dvdElement.style.backgroundPosition = 'center';
+                    dvdElement.style.pointerEvents = 'none';
+                    
+                    document.body.appendChild(dvdElement);
+                    
+                    // Initialize position and velocity
+                    // Start within 10-50px of a corner
+                    const corners = [
+                        { x: 0, y: 0 }, // top-left
+                        { x: window.innerWidth - 150, y: 0 }, // top-right
+                        { x: 0, y: window.innerHeight - 150 }, // bottom-left
+                        { x: window.innerWidth - 150, y: window.innerHeight - 150 } // bottom-right
+                    ];
+                    
+                    const selectedCorner = corners[Math.floor(Math.random() * corners.length)];
+                    // Start slightly offset from corner
+                    let x = selectedCorner.x + (Math.random() * 40 + 10); // 10-50px from corner
+                    let y = selectedCorner.y + (Math.random() * 40 + 10);
+                    
+                    // Clamp to valid bounds
+                    x = Math.max(0, Math.min(x, window.innerWidth - 150));
+                    y = Math.max(0, Math.min(y, window.innerHeight - 150));
+                    
+                    // Diagonal direction with some randomness
+                    const speed = 10; // pixels per frame
+                    // Pick a general diagonal direction (roughly toward opposite corner)
+                    let vx, vy;
+                    const quadrant = Math.floor(Math.random() * 4);
+                    switch(quadrant) {
+                        case 0: // Move right-down
+                            vx = (Math.random() * 1.5 + 2.5);
+                            vy = (Math.random() * 1.5 + 2.5);
+                            break;
+                        case 1: // Move left-down
+                            vx = -(Math.random() * 1.5 + 2.5);
+                            vy = (Math.random() * 1.5 + 2.5);
+                            break;
+                        case 2: // Move right-up
+                            vx = (Math.random() * 1.5 + 2.5);
+                            vy = -(Math.random() * 1.5 + 2.5);
+                            break;
+                        case 3: // Move left-up
+                            vx = -(Math.random() * 1.5 + 2.5);
+                            vy = -(Math.random() * 1.5 + 2.5);
+                            break;
+                    }
+                    // Normalize to maintain constant speed
+                    const magnitude = Math.sqrt(vx * vx + vy * vy);
+                    vx = (vx / magnitude) * speed;
+                    vy = (vy / magnitude) * speed;
+                    let currentImageIndex = Math.floor(Math.random() * slides.length);
+                    
+                    // Set initial image
+                    dvdElement.style.backgroundImage = slides[currentImageIndex].style.backgroundImage;
+                    
+                    // Animation loop - use setInterval for better Safari performance
+                    let bounceCount = 0;
+                    dvdAnimation = setInterval(() => {
+                        x += vx;
+                        y += vy;
+                        
+                        // Check for collisions with edges
+                        if (x <= 0 || x + 150 >= window.innerWidth) {
+                            vx = -vx;
+                            // Change image on bounce
+                            currentImageIndex = (currentImageIndex + 1) % slides.length;
+                            dvdElement.style.backgroundImage = slides[currentImageIndex].style.backgroundImage;
+                        }
+                        
+                        if (y <= 0 || y + 150 >= window.innerHeight) {
+                            vy = -vy;
+                            // Change image on bounce
+                            currentImageIndex = (currentImageIndex + 1) % slides.length;
+                            dvdElement.style.backgroundImage = slides[currentImageIndex].style.backgroundImage;
+                        }
+                        
+                        // Clamp position to viewport
+                        x = Math.max(0, Math.min(x, window.innerWidth - 150));
+                        y = Math.max(0, Math.min(y, window.innerHeight - 150));
+                        
+                        // Update position only
+                        dvdElement.style.transform = `translate3d(${Math.round(x)}px, ${Math.round(y)}px, 0)`;
+                    }, 16); // ~60fps
+                    
+                    // Brighten work, dim others
                     if (workText) workText.style.opacity = '1';
                     if (otherText) otherText.style.opacity = '0.5';
                     if (aboutText) aboutText.style.opacity = '0.5';
                 });
                 
                 workText.addEventListener('mouseleave', function() {
-                    // Restore opacity
-                    if (workText) workText.style.opacity = '1';
+                    // Stop animation
+                    if (dvdAnimation) {
+                        clearInterval(dvdAnimation);
+                        dvdAnimation = null;
+                    }
+                    
+                    // Remove DVD element immediately
+                    if (dvdElement && dvdElement.parentNode) {
+                        dvdElement.remove();
+                        dvdElement = null;
+                    }
+                    
+                    // Dim all text
+                    if (workText) workText.style.opacity = '0.5';
                     if (otherText) otherText.style.opacity = '0.5';
                     if (aboutText) aboutText.style.opacity = '0.5';
-                });
-            }
-            
-            // Add hover effect for moleskine - DVD bouncing animation
-            if (moleskine) {
-                let moleskine_dvdAnimation = null;
-                let moleskine_dvdElement = null;
-                
-                moleskine.addEventListener('mouseenter', function() {
-                    // Clear any existing animation before starting a new one
-                    if (moleskine_dvdAnimation) {
-                        clearInterval(moleskine_dvdAnimation);
-                        moleskine_dvdAnimation = null;
-                    }
-                    if (moleskine_dvdElement && moleskine_dvdElement.parentNode) {
-                        moleskine_dvdElement.remove();
-                        moleskine_dvdElement = null;
-                    }
-                    
-                    const slides = document.querySelectorAll('.carousel-slide');
-                    
-                    // Create the bouncing image element
-                    moleskine_dvdElement = document.createElement('div');
-                    moleskine_dvdElement.className = 'dvd-bouncer';
-                    moleskine_dvdElement.style.position = 'fixed';
-                    moleskine_dvdElement.style.width = '150px';
-                    moleskine_dvdElement.style.height = '150px';
-                    moleskine_dvdElement.style.zIndex = '9999';
-                    moleskine_dvdElement.style.borderRadius = '8px';
-                    moleskine_dvdElement.style.backgroundSize = 'cover';
-                    moleskine_dvdElement.style.backgroundPosition = 'center';
-                    moleskine_dvdElement.style.pointerEvents = 'none';
-                    
-                    document.body.appendChild(moleskine_dvdElement);
-                    
-                    // Initialize position and velocity
-                    const corners = [
-                        { x: 0, y: 0 },
-                        { x: window.innerWidth - 150, y: 0 },
-                        { x: 0, y: window.innerHeight - 150 },
-                        { x: window.innerWidth - 150, y: window.innerHeight - 150 }
-                    ];
-                    
-                    const selectedCorner = corners[Math.floor(Math.random() * corners.length)];
-                    let x = selectedCorner.x + (Math.random() * 40 + 10);
-                    let y = selectedCorner.y + (Math.random() * 40 + 10);
-                    
-                    x = Math.max(0, Math.min(x, window.innerWidth - 150));
-                    y = Math.max(0, Math.min(y, window.innerHeight - 150));
-                    
-                    const speed = 10;
-                    let vx, vy;
-                    const quadrant = Math.floor(Math.random() * 4);
-                    switch(quadrant) {
-                        case 0: vx = speed; vy = speed; break;
-                        case 1: vx = -speed; vy = speed; break;
-                        case 2: vx = speed; vy = -speed; break;
-                        case 3: vx = -speed; vy = -speed; break;
-                    }
-                    
-                    let currentImageIndex = Math.floor(Math.random() * slides.length);
-                    moleskine_dvdElement.style.backgroundImage = slides[currentImageIndex].style.backgroundImage;
-                    
-                    moleskine_dvdAnimation = setInterval(() => {
-                        x += vx;
-                        y += vy;
-                        
-                        if (x <= 0 || x + 150 >= window.innerWidth) {
-                            vx = -vx;
-                            currentImageIndex = (currentImageIndex + 1) % slides.length;
-                            moleskine_dvdElement.style.backgroundImage = slides[currentImageIndex].style.backgroundImage;
-                        }
-                        
-                        if (y <= 0 || y + 150 >= window.innerHeight) {
-                            vy = -vy;
-                            currentImageIndex = (currentImageIndex + 1) % slides.length;
-                            moleskine_dvdElement.style.backgroundImage = slides[currentImageIndex].style.backgroundImage;
-                        }
-                        
-                        x = Math.max(0, Math.min(x, window.innerWidth - 150));
-                        y = Math.max(0, Math.min(y, window.innerHeight - 150));
-                        
-                        moleskine_dvdElement.style.transform = `translate3d(${Math.round(x)}px, ${Math.round(y)}px, 0)`;
-                    }, 16);
-                });
-                
-                moleskine.addEventListener('mouseleave', function() {
-                    if (moleskine_dvdAnimation) {
-                        clearInterval(moleskine_dvdAnimation);
-                        moleskine_dvdAnimation = null;
-                    }
-                    
-                    if (moleskine_dvdElement && moleskine_dvdElement.parentNode) {
-                        moleskine_dvdElement.remove();
-                        moleskine_dvdElement = null;
-                    }
-                });
-            }
-            
-            // Preload toshiba images (already loaded in CSS as background-image)
-            
-            // Add hover effect for toshiba image - toggle between toshiba1 and toshiba2
-            const toshibaImage = document.querySelector('.toshiba-image');
-            if (toshibaImage) {
-                const layer1 = document.querySelector('.toshiba-layer-1');
-                const layer2 = document.querySelector('.toshiba-layer-2');
-                
-                let toshibaToggleTimeout = null;
-                let toshibaToggleInterval = null;
-                let showingLayer1 = true; // Currently showing layer 1 (toshiba2)
-                
-                toshibaImage.addEventListener('mouseenter', function() {
-                    // After 0.5 seconds, toggle the layers (instant switch)
-                    toshibaToggleTimeout = setTimeout(() => {
-                        // First toggle
-                        showingLayer1 = !showingLayer1;
-                        layer1.style.opacity = showingLayer1 ? '1' : '0';
-                        layer2.style.opacity = showingLayer1 ? '0' : '1';
-                        
-                        // Continue toggling every 0.5 seconds while hovering
-                        toshibaToggleInterval = setInterval(() => {
-                            showingLayer1 = !showingLayer1;
-                            layer1.style.opacity = showingLayer1 ? '1' : '0';
-                            layer2.style.opacity = showingLayer1 ? '0' : '1';
-                        }, 500); // 0.5 second interval between switches
-                    }, 500); // 0.5 second delay before first switch
-                });
-                
-                toshibaImage.addEventListener('mouseleave', function() {
-                    // Stop toggling and reset to layer 1 (toshiba2)
-                    if (toshibaToggleTimeout) {
-                        clearTimeout(toshibaToggleTimeout);
-                        toshibaToggleTimeout = null;
-                    }
-                    if (toshibaToggleInterval) {
-                        clearInterval(toshibaToggleInterval);
-                        toshibaToggleInterval = null;
-                    }
-                    showingLayer1 = true;
-                    layer1.style.opacity = '1';
-                    layer2.style.opacity = '0';
                 });
             }
             
@@ -471,7 +436,8 @@
                         popup.remove();
                     });
                     
-                    // Dim other text (but keep workText bright)
+                    // Dim all text
+                    if (workText) workText.style.opacity = '0.5';
                     if (otherText) otherText.style.opacity = '0.5';
                     if (aboutText) aboutText.style.opacity = '0.5';
                     
@@ -493,7 +459,7 @@
                         // Remove Playzone font class and restore Times New Roman
                         workText.classList.remove('playzone-mode');
                         workText.style.fontFamily = '"Times New Roman", serif';
-                        workText.style.opacity = '1';
+                        workText.style.opacity = '0.5';
                         const newSpans = workText.querySelectorAll('span');
                         newSpans.forEach((span, index) => {
                             span.style.opacity = '0';
@@ -508,14 +474,15 @@
             // Add hover effect for about text
             if (aboutText) {
                 aboutText.addEventListener('mouseenter', function() {
-                    // Brighten about, dim others (not moleskine or workText)
+                    // Brighten about, dim others
+                    if (workText) workText.style.opacity = '0.5';
                     if (otherText) otherText.style.opacity = '0.5';
                     if (aboutText) aboutText.style.opacity = '1';
                 });
                 
                 aboutText.addEventListener('mouseleave', function() {
-                    // Restore text states (workText stays at 1)
-                    if (workText) workText.style.opacity = '1';
+                    // Dim all text
+                    if (workText) workText.style.opacity = '0.5';
                     if (otherText) otherText.style.opacity = '0.5';
                     if (aboutText) aboutText.style.opacity = '0.5';
                 });
