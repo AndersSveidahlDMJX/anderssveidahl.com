@@ -680,3 +680,37 @@ video {
   padding-right: 20px;
   white-space: nowrap;
 }
+
+/* Moleskine Notebook on Desk */
+.moleskine-notebook {
+  position: fixed;
+  bottom: 40px;
+  left: 60px;
+  width: 280px;
+  height: 400px;
+  background-image: url('assets/img/moleskine.avif');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  z-index: 5;
+  pointer-events: none;
+  transform: perspective(1200px) rotateY(-8deg) rotateX(2deg) rotateZ(-3deg);
+  filter: drop-shadow(-8px 12px 20px rgba(0, 0, 0, 0.5)) drop-shadow(-2px 4px 8px rgba(0, 0, 0, 0.3));
+}
+
+/* Moleskine Notebook on Desk */
+.moleskine-notebook {
+  position: fixed;
+  bottom: 40px;
+  left: 60px;
+  width: 280px;
+  height: 400px;
+  background-image: url('assets/img/moleskine.avif');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  z-index: 5;
+  pointer-events: none;
+  transform: perspective(1200px) rotateY(-8deg) rotateX(2deg) rotateZ(-3deg);
+  filter: drop-shadow(-8px 12px 20px rgba(0, 0, 0, 0.5)) drop-shadow(-2px 4px 8px rgba(0, 0, 0, 0.3));
+}
