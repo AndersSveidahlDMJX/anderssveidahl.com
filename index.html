@@ -103,6 +103,7 @@
         <div class="text-container layout3">
             <div class="main-content">
                 <a href="work.html" class="text-link work-text-copy" data-en-text="WORK" data-da-text="ARBEJDE"></a>
+                <a href="work.html" class="text-link work-text-left" data-en-text="WORK" data-da-text="ARBEJDE"></a>
             </div>
             <footer class="footer-section">
                 <a href="about.html" class="text-link about-text" data-en-text="about" data-da-text="om">about</a>
@@ -147,6 +148,7 @@
             // Update all translatable elements
             const workText = document.querySelector('.work-text');
             const workTextCopy = document.querySelector('.work-text-copy');
+            const workTextLeft = document.querySelector('.work-text-left');
             const aboutText = document.querySelector('.about-text');
             const langButtons = document.querySelectorAll('.lang-btn');
 
@@ -155,6 +157,9 @@
             }
             if (workTextCopy) {
                 workTextCopy.textContent = translations[lang]['WORK'];
+            }
+            if (workTextLeft) {
+                workTextLeft.textContent = translations[lang]['WORK'];
             }
             if (aboutText) {
                 aboutText.textContent = translations[lang]['about'];
