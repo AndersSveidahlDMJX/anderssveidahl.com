@@ -1,4 +1,10 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&display=swap");
+
+@font-face {
+  font-family: "Playzone";
+  src: local("Playzone");
+}
 
 @font-face {
   font-family: "UglyHandwriting";
@@ -33,6 +39,9 @@ body {
   background-color: #000000;
   padding: 0;
   box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 }
 
 header {
@@ -488,6 +497,8 @@ video {
   position: relative;
   overflow: visible;
   text-align: center;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 .work-text {
@@ -503,6 +514,15 @@ video {
   margin: 0 auto;
   opacity: 0.8;
   transition: opacity 0.3s ease;
+  will-change: transform;
+  position: relative;
+}
+
+.work-text.playzone-mode {
+  font-family: "Caveat", cursive !important;
+  font-size: 1.3em !important;
+  font-weight: 700;
+  will-change: transform;
 }
 
 .other-text {
@@ -510,12 +530,18 @@ video {
   font-weight: 100;
   font-style: italic;
   font-family: "Comic Sans MS", cursive;
-  white-space: normal;
-  max-width: 300px;
+  white-space: pre-wrap;
+  width: 400px;
+  min-height: 60px;
   text-align: center;
   transform: translateY(15px);
   opacity: 0.8;
   transition: opacity 0.3s ease;
+  will-change: opacity;
+  position: fixed;
+  left: 50%;
+  top: 55%;
+  margin-left: -200px;
 }
 
 .about-text {
@@ -637,4 +663,16 @@ video {
   -webkit-backface-visibility: hidden;
   transform: translate3d(0, 0, 0);
   -webkit-transform: translate3d(0, 0, 0);
+  -webkit-font-smoothing: antialiased;
+  image-rendering: -webkit-optimize-contrast;
+}
+
+/* Playzone font styling for HUH? text */
+.work-text.playzone-mode {
+  font-family: "Caveat", cursive !important;
+  font-size: 4rem !important;
+  font-weight: 700;
+  will-change: transform;
+  padding-right: 20px;
+  white-space: nowrap;
 }
