@@ -40,7 +40,6 @@ body {
   height: 100vh;
   display: flex;
   flex-direction: column;
-  background-color: #000000;
   background-image: url('assets/img/wooden_desk.avif');
   background-size: cover;
   background-position: center;
