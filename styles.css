@@ -707,8 +707,8 @@ video {
   position: fixed;
   top: 50%;
   left: 33.33%;
-  width: 560px;
-  height: 800px;
+  width: 280px;
+  height: 400px;
   background-image: url('assets/img/moleskine.png');
   background-size: contain;
   background-repeat: no-repeat;
