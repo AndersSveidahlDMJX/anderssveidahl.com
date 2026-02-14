@@ -37,7 +37,7 @@ body {
   display: flex;
   flex-direction: column;
   background-color: #000000;
-  background-image: url('assets/img/wooden_background.jpg');
+  background-image: url('assets/img/wooden_desk.avif');
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
@@ -699,7 +699,7 @@ video {
   z-index: 5;
   pointer-events: auto;
   text-decoration: none;
-  background-image: url('assets/img/moleskine.jpg');
+  background-image: url('assets/img/moleskine.png');
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
@@ -779,11 +779,11 @@ video {
 }
 
 .toshiba-layer-1 {
-  background-image: url('assets/img/toshiba1.jpg');
+  background-image: url('assets/img/toshiba1.png');
 }
 
 .toshiba-layer-2 {
-  background-image: url('assets/img/toshiba2.avif');
+  background-image: url('assets/img/toshiba2.png');
   opacity: 0;
 }
 
@@ -797,7 +797,7 @@ video {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-image: url('assets/img/diary.jpg');
+  background-image: url('assets/img/diary.png');
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
