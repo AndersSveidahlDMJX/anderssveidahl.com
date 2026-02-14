@@ -367,6 +367,40 @@
                 });
             }
             
+            // Add hover effect for toshiba image - toggle between toshiba1 and toshiba2
+            const toshibaImage = document.querySelector('.toshiba-image');
+            if (toshibaImage) {
+                let toshibaToggleTimeout = null;
+                let isToshiba2 = true; // Currently showing toshiba2
+                
+                toshibaImage.addEventListener('mouseenter', function() {
+                    // After 1 second, toggle the image
+                    toshibaToggleTimeout = setTimeout(() => {
+                        isToshiba2 = !isToshiba2;
+                        const imageUrl = isToshiba2 ? 'assets/img/toshiba2.png' : 'assets/img/toshiba1.png';
+                        toshibaImage.style.backgroundImage = `url('${imageUrl}')`;
+                        
+                        // Continue toggling every 1 second while hovering
+                        toshibaToggleTimeout = setInterval(() => {
+                            isToshiba2 = !isToshiba2;
+                            const imageUrl = isToshiba2 ? 'assets/img/toshiba2.png' : 'assets/img/toshiba1.png';
+                            toshibaImage.style.backgroundImage = `url('${imageUrl}')`;
+                        }, 1000);
+                    }, 1000);
+                });
+                
+                toshibaImage.addEventListener('mouseleave', function() {
+                    // Stop toggling and reset to toshiba2
+                    if (toshibaToggleTimeout) {
+                        clearTimeout(toshibaToggleTimeout);
+                        clearInterval(toshibaToggleTimeout);
+                        toshibaToggleTimeout = null;
+                    }
+                    isToshiba2 = true;
+                    toshibaImage.style.backgroundImage = 'url(\'assets/img/toshiba2.png\')';
+                });
+            }
+            
             // Add hover effect for other text (...not work?)
             if (otherText) {
                 otherText.addEventListener('mouseenter', function() {
