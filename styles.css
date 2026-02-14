@@ -443,10 +443,12 @@ header h1 {
   background-repeat: no-repeat;
   background-position: center;
   background-image: url('assets/img/toshiba1.png');
+  z-index: 2;
 }
 
 .toshiba-layer-2 {
   background-image: url('assets/img/toshiba2.png');
+  z-index: 1;
 }
 
 .toshiba-image:hover .toshiba-layer-1,
