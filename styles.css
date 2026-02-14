@@ -454,6 +454,12 @@ header h1 {
 }
 
 .toshiba-layer-2 {
+  position: absolute;
+  width: 280px;
+  height: 420px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
   background-image: url('assets/img/toshiba2.png');
   z-index: 1;
   will-change: transform;
