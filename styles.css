@@ -37,6 +37,10 @@ body {
   display: flex;
   flex-direction: column;
   background-color: #000000;
+  background-image: url('assets/img/wooden_background.avif');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
   padding: 0;
   box-sizing: border-box;
   -webkit-font-smoothing: antialiased;
