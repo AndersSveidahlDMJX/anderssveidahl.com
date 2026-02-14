@@ -367,6 +367,12 @@
                 });
             }
             
+            // Preload toshiba images to prevent blank flashes during switching
+            const img1 = new Image();
+            img1.src = 'assets/img/toshiba1.png';
+            const img2 = new Image();
+            img2.src = 'assets/img/toshiba2.png';
+            
             // Add hover effect for toshiba image - toggle between toshiba1 and toshiba2
             const toshibaImage = document.querySelector('.toshiba-image');
             if (toshibaImage) {
