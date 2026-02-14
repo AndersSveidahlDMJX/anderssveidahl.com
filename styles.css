@@ -703,6 +703,11 @@ video {
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
+  transition: opacity 0.3s ease;
+}
+
+.moleskine-notebook:hover {
+  opacity: 0.8;
 }
 
 .moleskine-link {
@@ -771,11 +776,17 @@ video {
 
 .toshiba-layer {
   position: absolute;
-  width: 400px;
-  height: 600px;
+  width: 280px;
+  height: 420px;
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.toshiba-layer:hover {
+  transform: scale(1.1);
 }
 
 .toshiba-layer-1 {
@@ -803,4 +814,9 @@ video {
   background-position: center;
   z-index: 5;
   pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.diary-image:hover {
+  opacity: 0.8;
 }
