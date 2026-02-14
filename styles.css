@@ -344,6 +344,7 @@ header h1 {
   transition: transform 0.3s ease !important;
   transform-origin: center center;
   clip-path: polygon(20% 15%, 80% 15%, 80% 85%, 20% 85%);
+  box-shadow: 15px 15px 40px rgba(0, 0, 0, 0.6);
 }
 
 .moleskine-notebook:hover {
@@ -435,6 +436,7 @@ header h1 {
   cursor: pointer;
   clip-path: polygon(8% 5%, 92% 5%, 92% 95%, 8% 95%);
   transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+  box-shadow: 15px 15px 40px rgba(0, 0, 0, 0.6);
 }
 
 .toshiba-layer-1 {
@@ -486,7 +488,8 @@ header h1 {
   pointer-events: auto;
   transition: transform 0.3s ease !important;
   transform-origin: center center;
-  clip-path: polygon(20% 15%, 80% 15%, 80% 85%, 20% 85%);
+  clip-path: polygon(10% 15%, 80% 15%, 80% 85%, 10% 85%);
+  box-shadow: -15px 15px 40px rgba(0, 0, 0, 0.6);
 }
 
 .diary-image:hover {
