@@ -11,11 +11,6 @@
   src: local("UglyHandwriting");
 }
 
-@font-face {
-  font-family: "Impact Label";
-  src: local("Impact Label");
-}
-
 /* Rotation effect for shift when work drops */
 @keyframes tiltShift {
   0% {
@@ -29,10 +24,6 @@
   }
 }
 
-html {
-  background-color: transparent;
-}
-
 * {
   margin: 0;
   padding: 0;
@@ -42,23 +33,19 @@ html {
 body {
   width: 100%;
   height: 100vh;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
-  background-color: #3d2817;
-  background-image: url('/assets/img/wooden_desk.avif');
+  background-color: #000000;
+  background-image: url('assets/img/wooden_background.jpg');
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
-  background-repeat: no-repeat;
   padding: 0;
   box-sizing: border-box;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
-}
-
-.container {
-  display: none;
 }
 
 header {
@@ -70,7 +57,7 @@ header {
   justify-content: center;
   box-shadow: none;
   position: relative;
-  margin-bottom: 0;
+  margin-bottom: 50px;
   z-index: 20;
 }
 
@@ -147,15 +134,46 @@ header h1 {
   opacity: 0.7;
 }
 
-/* CAROUSEL & DVD ANIMATION STYLES - PRESERVED */
+.container {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  gap: 0;
+  padding: 0;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+}
+.upper-half {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  margin: 0;
+}
+.upper-half.expanded {
+  flex: 2;
+}
+
+.upper-half.expanded-large {
+  flex: 1;
+}
+.upper-half:hover {
+  filter: brightness(1.1);
+}
+
 .carousel-container {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: 0;
-  display: none;
+  z-index: 1;
 }
 
 .carousel-slide {
@@ -179,6 +197,10 @@ header h1 {
   opacity: 1;
 }
 
+.upper-half:hover .carousel-slide {
+  filter: brightness(1) blur(4px);
+}
+
 .carousel-text {
   position: relative;
   z-index: 2;
@@ -197,23 +219,47 @@ header h1 {
   color: #ffffff;
 }
 
-/* DVD Bouncer Animation - Optimized for Safari */
-.dvd-bouncer {
-  position: fixed;
-  width: 150px;
-  height: 150px;
-  border-radius: 8px;
-  background-size: cover;
-  background-position: center;
-  pointer-events: none;
-  z-index: 9999;
-  will-change: transform;
-  backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
-  transform: translate3d(0, 0, 0);
-  -webkit-transform: translate3d(0, 0, 0);
-  -webkit-font-smoothing: antialiased;
-  image-rendering: -webkit-optimize-contrast;
+.lower-half {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  cursor: pointer;
+  transition: color 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  margin: 0;
+}
+.lower-half.smaller {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.lower-half-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 1;
+  background-color: #000;
+  filter: brightness(0.5);
+  transition: filter 0.3s ease;
+}
+
+.lower-half:hover .lower-half-video {
+  filter: brightness(1);
+}
+
+video {
+  display: block;
+  width: 100%;
+  height: 100%;
 }
 
 .other-link {
@@ -224,6 +270,217 @@ header h1 {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.lower-half {
+  transition: background-color 0.3s ease;
+}
+
+.lower-half:hover {
+  background-color: transparent;
+}
+
+.upper-half h1,
+.lower-half h1 {
+  font-size: 6rem;
+  font-weight: 700;
+  font-family: "Roboto", sans-serif;
+  text-transform: capitalize;
+}
+.upper-half h1 {
+  color: #333;
+  font-weight: 700;
+}
+
+.lower-half h1 {
+  color: #ffffff;
+  transition: color 0.3s ease;
+  font-weight: 100;
+}
+
+.other-link h1 {
+  filter: blur(0px) !important;
+}
+
+.lower-half > h1 {
+  filter: blur(0px) !important;
+}
+
+.lower-half:hover h1 {
+  color: #ffffff;
+}
+
+/* Subpage styles */
+.work-page {
+  background-color: #ffff00;
+  display: flex;
+  flex-direction: column;
+}
+
+.work-page .subpage-container {
+  flex: 1;
+}
+
+.other-page {
+  background-color: #00cc00;
+  display: flex;
+  flex-direction: column;
+}
+
+.other-page .subpage-container {
+  flex: 1;
+}
+
+.about-page {
+  background-color: #f5f5f5;
+  display: flex;
+  flex-direction: column;
+}
+
+.about-page .subpage-container {
+  flex: 1;
+}
+
+.work-detail-page {
+  background-color: #f5f5f5;
+  display: flex;
+  flex-direction: column;
+}
+
+.work-detail-page .subpage-container {
+  flex: 1;
+}
+
+.work-detail-content h1 {
+  font-size: 3rem;
+  color: #333;
+  font-family: Arial, sans-serif;
+}
+
+.subpage-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+}
+
+.work-content,
+.other-content {
+  text-align: center;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  margin: 0;
+}
+
+.work-content h1 {
+  font-size: 3rem;
+  color: #333;
+  font-family: Arial, sans-serif;
+  margin-bottom: 30px;
+}
+
+.image-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+  width: 100vw;
+  height: calc(100vh - 70px);
+}
+
+.image-container {
+  background-color: #ddd;
+  border: 1px solid #333;
+  background-size: cover;
+  background-position: center;
+  filter: brightness(0.55);
+  transition: filter 0.3s ease;
+  cursor: pointer;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+}
+
+.image-container:hover {
+  filter: brightness(1);
+}
+
+.work-label {
+  font-size: 2rem;
+  color: white;
+  font-family: Arial, sans-serif;
+  font-weight: bold;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.image-container:hover .work-label {
+  opacity: 1;
+}
+
+.other-content h1 {
+  font-size: 3rem;
+  color: #fff;
+  font-family: Arial, sans-serif;
+  margin-bottom: 30px;
+}
+
+.about-content h1 {
+  font-size: 3rem;
+  color: #333;
+  font-family: Arial, sans-serif;
+}
+
+/* Layout 2 Styles */
+.carousel-container.layout2 {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  overflow: hidden;
+}
+
+.carousel-container.layout2 .carousel-slide {
+  filter: brightness(1) blur(4px);
+}
+
+.lower-half-video.layout2 {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw !important;
+  height: 100vh !important;
+  z-index: 1;
+  filter: brightness(0.5);
+  transition:
+    filter 0.3s ease,
+    opacity 0.3s ease;
+  opacity: 0;
+  object-fit: cover;
+}
+
+.text-container {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-around;
+  gap: 0;
+  width: 100%;
+  height: 100%;
+  padding: 0;
 }
 
 .text-link {
@@ -267,11 +524,9 @@ header h1 {
 
 .work-text.playzone-mode {
   font-family: "Caveat", cursive !important;
-  font-size: 4rem !important;
+  font-size: 1.3em !important;
   font-weight: 700;
   will-change: transform;
-  padding-right: 20px;
-  white-space: nowrap;
 }
 
 .other-text {
@@ -315,185 +570,146 @@ header h1 {
   text-align: center;
 }
 
+/* Letter-by-letter reveal effect handled by JavaScript */
+
+/* Layout 3 Styles: work centered, other below, about in footer */
+.container.layout3 {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  position: relative;
+  padding: 0;
+  gap: 0;
+}
+
+.carousel-container.layout3 {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1;
+  opacity: 0;
+  transition: opacity 1s ease;
+  overflow: hidden;
+}
+
+.carousel-container.layout3 .carousel-slide {
+  filter: brightness(1) blur(4px);
+}
+
+.lower-half-video.layout3 {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw !important;
+  height: 100vh !important;
+  z-index: 1;
+  filter: brightness(0.5);
+  transition:
+    filter 0.3s ease,
+    opacity 0.3s ease;
+  opacity: 0;
+  object-fit: cover;
+}
+
+.text-container.layout3 {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+}
+
+.text-container.layout3 .main-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  gap: 10px;
+  transform: translateY(0);
+}
+
+.text-container.layout3 .footer-section {
+  position: absolute;
+  bottom: 40px;
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  padding-right: 40px;
+}
+
 .work-text span {
   display: inline-block;
   white-space: nowrap;
 }
 
-/* === VIEWPORT LAYOUT: 3-COLUMN STRUCTURE === */
-/* Column 1 (Left Third - 0% to 33.33%): MOLESKINE NOTEBOOK */
-/* Column 2 (Middle Third - 33.33% to 66.66%): TOSHIBA IMAGE */
-/* Column 3 (Right Third - 66.66% to 100%): DIARY IMAGE */
+/* DVD Bouncer Animation - Optimized for Safari */
+.dvd-bouncer {
+  position: fixed;
+  width: 150px;
+  height: 150px;
+  border-radius: 8px;
+  background-size: cover;
+  background-position: center;
+  pointer-events: none;
+  z-index: 9999;
+  will-change: transform;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  transform: translate3d(0, 0, 0);
+  -webkit-transform: translate3d(0, 0, 0);
+  -webkit-font-smoothing: antialiased;
+  image-rendering: -webkit-optimize-contrast;
+}
 
-/* Moleskine Notebook - Left Third */
+/* Playzone font styling for HUH? text */
+.work-text.playzone-mode {
+  font-family: "Caveat", cursive !important;
+  font-size: 4rem !important;
+  font-weight: 700;
+  will-change: transform;
+  padding-right: 20px;
+  white-space: nowrap;
+}
+
+/* Moleskine Notebook on Desk */
 .moleskine-notebook {
   position: fixed;
-  left: 0;
-  top: 0;
-  width: 33.333%;
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 5;
-  pointer-events: auto;
-  text-decoration: none;
-  background-image: url('assets/img/moleskine.png');
+  bottom: 40px;
+  left: 60px;
+  width: 280px;
+  height: 400px;
+  background-image: url('assets/img/moleskine.jpg');
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
-  transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
-  transform-origin: center center;
-  clip-path: polygon(20% 15%, 80% 15%, 80% 85%, 20% 85%);
-  box-shadow: 6px 6px 12px rgba(0, 0, 0, 0.25), 10px 10px 25px rgba(0, 0, 0, 0.15);
-}
-
-.moleskine-notebook:hover {
-  transform: scale(1.15) !important;
-}
-
-.moleskine-link {
-  display: none;
-}
-
-/* Work Text Copy - overlaid on moleskine */
-.work-text-copy {
-  font-size: 1.335rem;
-  font-family: "Impact Label", Impact, "Arial Black", sans-serif !important;
-  font-weight: 400;
-  text-align: center;
-  color: #000000;
-  white-space: nowrap;
-  display: inline-block;
-  background-color: #FFFFFF;
-  padding: 2px 0px;
-  overflow: hidden;
-  line-height: 1;
-  opacity: 0.8;
-  transition: opacity 0.3s ease;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translateX(-50%) translateY(-50%);
-  z-index: 10;
-  cursor: pointer;
-}
-
-/* Work Text Left - below moleskine, left third */
-.work-text-left {
-  font-size: 1.335rem;
-  font-family: "Impact Label", Impact, "Arial Black", sans-serif !important;
-  font-weight: 400;
-  text-align: center;
-  color: #000000;
-  white-space: nowrap;
-  display: inline-block;
-  background-color: #FFFFFF;
-  padding: 2px 0px;
-  overflow: hidden;
-  line-height: 1;
-  opacity: 0.8;
-  transition: opacity 0.3s ease;
-  position: fixed;
-  left: calc(16.666% - 40px);
-  bottom: 80px;
-  transform: translateX(-50%);
-  z-index: 10;
-  cursor: pointer;
-}
-
-/* Toshiba Image - Center Third */
-.toshiba-image {
-  position: fixed;
-  left: 33.333%;
-  top: 0;
-  width: 33.333%;
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   z-index: 5;
   pointer-events: none;
+  transform: perspective(1200px) rotateY(-8deg) rotateX(2deg) rotateZ(-3deg);
+  filter: drop-shadow(-8px 12px 20px rgba(0, 0, 0, 0.5)) drop-shadow(-2px 4px 8px rgba(0, 0, 0, 0.3));
 }
-
-@keyframes show-toshiba-1 {
-  0%, 50% {
-    opacity: 1;
-  }
-  51%, 100% {
-    opacity: 0;
-  }
-}
-
-.toshiba-layer {
-  position: absolute;
-  width: 280px;
-  height: 420px;
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
-  pointer-events: auto;
-  transform-origin: center center;
-  cursor: pointer;
-  clip-path: polygon(8% 5%, 92% 5%, 92% 95%, 8% 95%);
-  transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
-  box-shadow: 6px 6px 12px rgba(0, 0, 0, 0.25), 10px 10px 25px rgba(0, 0, 0, 0.15);
-  will-change: transform;
-}
-
-.toshiba-layer-1 {
-  position: absolute;
-  width: 280px;
-  height: 420px;
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-image: url('assets/img/toshiba1.png');
-  z-index: 2;
-  opacity: 0;
-  display: block !important;
-  animation: show-toshiba-1 2s linear infinite !important;
-}
-
-.toshiba-layer-2 {
-  position: absolute;
-  width: 280px;
-  height: 420px;
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-image: url('assets/img/toshiba2.png');
-  z-index: 1;
-  will-change: transform;
-}
-
-.toshiba-layer-1:hover,
-.toshiba-layer-2:hover {
-  transform: scale(1.15) !important;
-}
-
-/* Diary Image - Right Third */
-.diary-image {
+/* Moleskine Notebook on Desk */
+.moleskine-notebook {
   position: fixed;
-  right: 0;
-  top: 0;
-  width: 33.333%;
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-image: url('assets/img/diary.png');
+  bottom: 40px;
+  left: 60px;
+  width: 280px;
+  height: 400px;
+  background-image: url('assets/img/moleskine.jpg');
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
   z-index: 5;
-  pointer-events: auto;
-  transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
-  transform-origin: center center;
-  clip-path: polygon(5% 15%, 85% 15%, 85% 85%, 5% 85%);
-  box-shadow: -6px 6px 12px rgba(0, 0, 0, 0.25), -10px 10px 25px rgba(0, 0, 0, 0.15);
-}
-
-.diary-image:hover {
-  transform: scale(1.15) !important;
+  pointer-events: none;
+  transform: perspective(1200px) rotateY(-8deg) rotateX(2deg) rotateZ(-3deg);
+  filter: drop-shadow(-8px 12px 20px rgba(0, 0, 0, 0.5)) drop-shadow(-2px 4px 8px rgba(0, 0, 0, 0.3));
 }
