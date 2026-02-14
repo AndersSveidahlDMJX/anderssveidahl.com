@@ -99,8 +99,12 @@
         
         <div class="text-container layout3">
             <div class="main-content">
+                <a href="work.html" class="text-link work-text-copy" data-en-text="WORK" data-da-text="ARBEJDE"></a>
+                <a href="work.html" class="text-link work-text-left" data-en-text="not work" data-da-text="ikke arbejde"></a>
+                <a href="other.html" class="text-link other-text" data-en-text="...aaand not work?" data-da-text="...oooog ikke arbejde?"></a>
             </div>
             <footer class="footer-section">
+                <a href="about.html" class="text-link about-text" data-en-text="about" data-da-text="om">about</a>
             </footer>
         </div>
     </div>
@@ -187,126 +191,320 @@
             setLanguage(currentLanguage);
         });
 
-        // Header reveal animation on page load
+        // Letter-by-letter reveal effect on page load
         document.addEventListener('DOMContentLoaded', function () {
             const headerH1 = document.querySelector('header h1');
+            const workText = document.querySelector('.work-text');
+            const otherText = document.querySelector('.other-text');
+            const aboutText = document.querySelector('.about-text');
             
-            // Initially hide header
+            // Initially hide all text elements
             if (headerH1) headerH1.style.opacity = '0';
+            if (workText) workText.style.opacity = '0';
+            if (aboutText) aboutText.style.opacity = '0';
+            if (otherText) otherText.style.opacity = '0';
             
-            // Show header immediately on page load
+            function revealLetters(element, letterDuration, startDelay = 0) {
+                // Check if this element has colored spans (work-text or other-text)
+                if (element.classList.contains('work-text') || element.classList.contains('other-text')) {
+                    // For colored span elements, preserve the HTML structure
+                    const spans = element.querySelectorAll('span');
+                    spans.forEach(span => {
+                        span.style.opacity = '0';
+                    });
+                    
+                    let charIndex = 0;
+                    spans.forEach((span, spanIndex) => {
+                        const spanText = span.textContent;
+                        [...spanText].forEach((letter, letterIndex) => {
+                            setTimeout(() => {
+                                span.style.opacity = '1';
+                            }, startDelay + letterDuration * charIndex);
+                            charIndex++;
+                        });
+                    });
+                    
+                    return startDelay + letterDuration * charIndex;
+                } else {
+                    // Original logic for other text elements
+                    const text = element.textContent;
+                    element.textContent = '';
+                    
+                    [...text].forEach((letter, index) => {
+                        setTimeout(() => {
+                            element.textContent += letter;
+                        }, startDelay + letterDuration * index);
+                    });
+                    
+                    // Return the total duration of this animation
+                    return startDelay + letterDuration * text.length;
+                }
+            }
+            
+            // Show all elements immediately on page load
             if (headerH1) {
                 headerH1.style.opacity = '1';
             }
-        });
-
-        // DVD bouncing animation on moleskine hover
-        document.addEventListener('DOMContentLoaded', function() {
-            const moleskine = document.querySelector('.moleskine-notebook');
+            if (workText) {
+                workText.style.opacity = '0.5';
+            }
+            if (aboutText) {
+                aboutText.style.opacity = '0.5';
+            }
             
-            if (moleskine) {
-                let moleskine_dvdAnimation = null;
-                let moleskine_dvdElement = null;
+            // ...aaand not work? starts with letter-by-letter reveal animation
+            setTimeout(() => {
+                if (otherText) {
+                    otherText.style.transition = 'opacity 0.5s ease';
+                    otherText.style.opacity = '1';
+                    const letterDuration = 150; // 40% faster (250 * 0.6 = 150ms)
+                    const animationDuration = revealLetters(otherText, letterDuration, 0);
+                    
+                    // After reveal completes, dim all text elements
+                    setTimeout(() => {
+                        if (headerH1) headerH1.style.opacity = '1'; // Header never dims
+                        if (workText) workText.style.opacity = '0.5';
+                        if (otherText) otherText.style.opacity = '0.5';
+                        if (aboutText) aboutText.style.opacity = '0.5';
+                    }, animationDuration);
+                }
+            }, 500);
+            
+            // Add hover effect for work text - DVD bouncing animation
+            if (workText) {
+                let dvdAnimation = null;
+                let dvdElement = null;
                 
-                moleskine.addEventListener('mouseenter', function() {
+                workText.addEventListener('mouseenter', function() {
                     // Clear any existing animation before starting a new one
-                    if (moleskine_dvdAnimation) {
-                        clearInterval(moleskine_dvdAnimation);
-                        moleskine_dvdAnimation = null;
+                    if (dvdAnimation) {
+                        clearInterval(dvdAnimation);
+                        dvdAnimation = null;
                     }
-                    if (moleskine_dvdElement && moleskine_dvdElement.parentNode) {
-                        moleskine_dvdElement.remove();
-                        moleskine_dvdElement = null;
+                    if (dvdElement && dvdElement.parentNode) {
+                        dvdElement.remove();
+                        dvdElement = null;
                     }
                     
                     const slides = document.querySelectorAll('.carousel-slide');
                     
                     // Create the bouncing image element
-                    moleskine_dvdElement = document.createElement('div');
-                    moleskine_dvdElement.className = 'dvd-bouncer';
-                    moleskine_dvdElement.style.position = 'fixed';
-                    moleskine_dvdElement.style.width = '150px';
-                    moleskine_dvdElement.style.height = '150px';
-                    moleskine_dvdElement.style.zIndex = '9999';
-                    moleskine_dvdElement.style.borderRadius = '8px';
-                    moleskine_dvdElement.style.backgroundSize = 'cover';
-                    moleskine_dvdElement.style.backgroundPosition = 'center';
-                    moleskine_dvdElement.style.pointerEvents = 'none';
+                    dvdElement = document.createElement('div');
+                    dvdElement.className = 'dvd-bouncer';
+                    dvdElement.style.position = 'fixed';
+                    dvdElement.style.width = '150px';
+                    dvdElement.style.height = '150px';
+                    dvdElement.style.zIndex = '9999';
+                    dvdElement.style.borderRadius = '8px';
+                    dvdElement.style.backgroundSize = 'cover';
+                    dvdElement.style.backgroundPosition = 'center';
+                    dvdElement.style.pointerEvents = 'none';
                     
-                    document.body.appendChild(moleskine_dvdElement);
+                    document.body.appendChild(dvdElement);
                     
                     // Initialize position and velocity
+                    // Start within 10-50px of a corner
                     const corners = [
-                        { x: 0, y: 0 },
-                        { x: window.innerWidth - 150, y: 0 },
-                        { x: 0, y: window.innerHeight - 150 },
-                        { x: window.innerWidth - 150, y: window.innerHeight - 150 }
+                        { x: 0, y: 0 }, // top-left
+                        { x: window.innerWidth - 150, y: 0 }, // top-right
+                        { x: 0, y: window.innerHeight - 150 }, // bottom-left
+                        { x: window.innerWidth - 150, y: window.innerHeight - 150 } // bottom-right
                     ];
                     
                     const selectedCorner = corners[Math.floor(Math.random() * corners.length)];
-                    let x = selectedCorner.x + (Math.random() * 40 + 10);
+                    // Start slightly offset from corner
+                    let x = selectedCorner.x + (Math.random() * 40 + 10); // 10-50px from corner
                     let y = selectedCorner.y + (Math.random() * 40 + 10);
                     
+                    // Clamp to valid bounds
                     x = Math.max(0, Math.min(x, window.innerWidth - 150));
                     y = Math.max(0, Math.min(y, window.innerHeight - 150));
                     
-                    const speed = 10;
+                    // Diagonal direction with some randomness
+                    const speed = 10; // pixels per frame
+                    // Pick a general diagonal direction (roughly toward opposite corner)
                     let vx, vy;
                     const quadrant = Math.floor(Math.random() * 4);
                     switch(quadrant) {
-                        case 0: vx = (Math.random() * 1.5 + 2.5); vy = (Math.random() * 1.5 + 2.5); break;
-                        case 1: vx = -(Math.random() * 1.5 + 2.5); vy = (Math.random() * 1.5 + 2.5); break;
-                        case 2: vx = (Math.random() * 1.5 + 2.5); vy = -(Math.random() * 1.5 + 2.5); break;
-                        case 3: vx = -(Math.random() * 1.5 + 2.5); vy = -(Math.random() * 1.5 + 2.5); break;
+                        case 0: // Move right-down
+                            vx = (Math.random() * 1.5 + 2.5);
+                            vy = (Math.random() * 1.5 + 2.5);
+                            break;
+                        case 1: // Move left-down
+                            vx = -(Math.random() * 1.5 + 2.5);
+                            vy = (Math.random() * 1.5 + 2.5);
+                            break;
+                        case 2: // Move right-up
+                            vx = (Math.random() * 1.5 + 2.5);
+                            vy = -(Math.random() * 1.5 + 2.5);
+                            break;
+                        case 3: // Move left-up
+                            vx = -(Math.random() * 1.5 + 2.5);
+                            vy = -(Math.random() * 1.5 + 2.5);
+                            break;
                     }
-                    
+                    // Normalize to maintain constant speed
                     const magnitude = Math.sqrt(vx * vx + vy * vy);
                     vx = (vx / magnitude) * speed;
                     vy = (vy / magnitude) * speed;
                     let currentImageIndex = Math.floor(Math.random() * slides.length);
                     
                     // Set initial image
-                    moleskine_dvdElement.style.backgroundImage = slides[currentImageIndex].style.backgroundImage;
+                    dvdElement.style.backgroundImage = slides[currentImageIndex].style.backgroundImage;
                     
-                    // Animation loop
-                    moleskine_dvdAnimation = setInterval(() => {
+                    // Animation loop - use setInterval for better Safari performance
+                    let bounceCount = 0;
+                    dvdAnimation = setInterval(() => {
                         x += vx;
                         y += vy;
                         
                         // Check for collisions with edges
                         if (x <= 0 || x + 150 >= window.innerWidth) {
                             vx = -vx;
+                            // Change image on bounce
                             currentImageIndex = (currentImageIndex + 1) % slides.length;
-                            moleskine_dvdElement.style.backgroundImage = slides[currentImageIndex].style.backgroundImage;
+                            dvdElement.style.backgroundImage = slides[currentImageIndex].style.backgroundImage;
                         }
                         
                         if (y <= 0 || y + 150 >= window.innerHeight) {
                             vy = -vy;
+                            // Change image on bounce
                             currentImageIndex = (currentImageIndex + 1) % slides.length;
-                            moleskine_dvdElement.style.backgroundImage = slides[currentImageIndex].style.backgroundImage;
+                            dvdElement.style.backgroundImage = slides[currentImageIndex].style.backgroundImage;
                         }
                         
                         // Clamp position to viewport
                         x = Math.max(0, Math.min(x, window.innerWidth - 150));
                         y = Math.max(0, Math.min(y, window.innerHeight - 150));
                         
-                        // Update position
-                        moleskine_dvdElement.style.transform = `translate3d(${Math.round(x)}px, ${Math.round(y)}px, 0)`;
+                        // Update position only
+                        dvdElement.style.transform = `translate3d(${Math.round(x)}px, ${Math.round(y)}px, 0)`;
                     }, 16); // ~60fps
+                    
+                    // Brighten work, dim others
+                    if (workText) workText.style.opacity = '1';
+                    if (otherText) otherText.style.opacity = '0.5';
+                    if (aboutText) aboutText.style.opacity = '0.5';
                 });
                 
-                moleskine.addEventListener('mouseleave', function() {
+                workText.addEventListener('mouseleave', function() {
                     // Stop animation
-                    if (moleskine_dvdAnimation) {
-                        clearInterval(moleskine_dvdAnimation);
-                        moleskine_dvdAnimation = null;
+                    if (dvdAnimation) {
+                        clearInterval(dvdAnimation);
+                        dvdAnimation = null;
                     }
                     
-                    // Remove DVD element
-                    if (moleskine_dvdElement && moleskine_dvdElement.parentNode) {
-                        moleskine_dvdElement.remove();
-                        moleskine_dvdElement = null;
+                    // Remove DVD element immediately
+                    if (dvdElement && dvdElement.parentNode) {
+                        dvdElement.remove();
+                        dvdElement = null;
                     }
+                    
+                    // Dim all text
+                    if (workText) workText.style.opacity = '0.5';
+                    if (otherText) otherText.style.opacity = '0.5';
+                    if (aboutText) aboutText.style.opacity = '0.5';
+                });
+            }
+            
+            // Add hover effect for other text (...not work?)
+            if (otherText) {
+                otherText.addEventListener('mouseenter', function() {
+                    // Brighten other text, dim others (but NOT work when it's "Huh?")
+                    if (otherText) otherText.style.opacity = '1';
+                    if (aboutText) aboutText.style.opacity = '0.5';
+                    
+                    // Change work text to "Huh?" with reverse reveal
+                    const spans = workText.querySelectorAll('span');
+                    const letterDuration = 150;
+                    
+                    // Fade out existing letters
+                    spans.forEach((span, index) => {
+                        setTimeout(() => {
+                            span.style.opacity = '0';
+                        }, index * letterDuration);
+                    });
+                    
+                    // After all letters fade out, change to "Huh?"
+                    setTimeout(() => {
+                        workText.innerHTML = '<span style="color: #FF0000;">H</span><span style="color: #FFA500;">u</span><span style="color: #FFFF00;">h</span><span style="color: #00FF00;">?</span>';
+                        // Apply Playzone font via CSS class for better performance on Safari
+                        workText.classList.add('playzone-mode');
+                        // Keep Huh? at full opacity (never dim)
+                        workText.style.opacity = '1';
+                        const newSpans = workText.querySelectorAll('span');
+                        newSpans.forEach((span, index) => {
+                            span.style.opacity = '0';
+                            setTimeout(() => {
+                                span.style.opacity = '1';
+                            }, index * letterDuration);
+                        });
+                    }, spans.length * letterDuration);
+                    
+                    // After Huh? animation completes, dim all text except Huh?
+                    setTimeout(() => {
+                        if (otherText) otherText.style.opacity = '0.5';
+                        if (aboutText) aboutText.style.opacity = '0.5';
+                        // workText stays at 1.0 (never dims when showing Huh?)
+                    }, spans.length * letterDuration + letterDuration * 4);
+                });
+                
+                otherText.addEventListener('mouseleave', function() {
+                    // Remove all emoji popups if any exist
+                    const emojiPopups = document.querySelectorAll('.emoji-popup');
+                    emojiPopups.forEach((popup) => {
+                        popup.remove();
+                    });
+                    
+                    // Dim all text
+                    if (workText) workText.style.opacity = '0.5';
+                    if (otherText) otherText.style.opacity = '0.5';
+                    if (aboutText) aboutText.style.opacity = '0.5';
+                    
+                    // Change "Huh?" back to current language work text with reverse reveal
+                    const spans = workText.querySelectorAll('span');
+                    const letterDuration = 150;
+                    
+                    // Fade out existing letters
+                    spans.forEach((span, index) => {
+                        setTimeout(() => {
+                            span.style.opacity = '0';
+                        }, index * letterDuration);
+                    });
+                    
+                    // After all letters fade out, change back to work text in current language
+                    setTimeout(() => {
+                        const workWord = translations[currentLanguage]['WORK'];
+                        workText.textContent = workWord;
+                        // Remove Playzone font class and restore Times New Roman
+                        workText.classList.remove('playzone-mode');
+                        workText.style.fontFamily = '"Times New Roman", serif';
+                        workText.style.opacity = '0.5';
+                        const newSpans = workText.querySelectorAll('span');
+                        newSpans.forEach((span, index) => {
+                            span.style.opacity = '0';
+                            setTimeout(() => {
+                                span.style.opacity = '1';
+                            }, index * letterDuration);
+                        });
+                    }, spans.length * letterDuration);
+                });
+            }
+            
+            // Add hover effect for about text
+            if (aboutText) {
+                aboutText.addEventListener('mouseenter', function() {
+                    // Brighten about, dim others
+                    if (workText) workText.style.opacity = '0.5';
+                    if (otherText) otherText.style.opacity = '0.5';
+                    if (aboutText) aboutText.style.opacity = '1';
+                });
+                
+                aboutText.addEventListener('mouseleave', function() {
+                    // Dim all text
+                    if (workText) workText.style.opacity = '0.5';
+                    if (otherText) otherText.style.opacity = '0.5';
+                    if (aboutText) aboutText.style.opacity = '0.5';
                 });
             }
         });
