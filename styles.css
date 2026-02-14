@@ -681,35 +681,126 @@ video {
   white-space: nowrap;
 }
 
-/* Moleskine Notebook on Desk */
+/* === VIEWPORT LAYOUT: 3-COLUMN STRUCTURE === */
+/* Column 1 (Left Third - 0% to 33.33%): MOLESKINE NOTEBOOK */
+/* Column 2 (Middle Third - 33.33% to 66.66%): TOSHIBA IMAGE */
+/* Column 3 (Right Third - 66.66% to 100%): DIARY IMAGE */
+
+/* Moleskine Notebook - Left Third */
 .moleskine-notebook {
   position: fixed;
-  bottom: 40px;
-  left: 60px;
-  width: 280px;
-  height: 400px;
+  left: 0;
+  top: 0;
+  width: 33.333%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 5;
+  pointer-events: auto;
+  text-decoration: none;
   background-image: url('assets/img/moleskine.jpg');
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
-  z-index: 5;
-  pointer-events: none;
-  transform: perspective(1200px) rotateY(-8deg) rotateX(2deg) rotateZ(-3deg);
-  filter: drop-shadow(-8px 12px 20px rgba(0, 0, 0, 0.5)) drop-shadow(-2px 4px 8px rgba(0, 0, 0, 0.3));
 }
-/* Moleskine Notebook on Desk */
-.moleskine-notebook {
+
+.moleskine-link {
+  display: none;
+}
+
+/* Work Text Copy - overlaid on moleskine */
+.work-text-copy {
+  font-size: 1.335rem;
+  font-family: "Impact Label", Impact, "Arial Black", sans-serif !important;
+  font-weight: 400;
+  text-align: center;
+  color: #000000;
+  white-space: nowrap;
+  display: inline-block;
+  background-color: #FFFFFF;
+  padding: 2px 0px;
+  overflow: hidden;
+  line-height: 1;
+  opacity: 0.8;
+  transition: opacity 0.3s ease;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  z-index: 10;
+  cursor: pointer;
+}
+
+/* Work Text Left - below moleskine, left third */
+.work-text-left {
+  font-size: 1.335rem;
+  font-family: "Impact Label", Impact, "Arial Black", sans-serif !important;
+  font-weight: 400;
+  text-align: center;
+  color: #000000;
+  white-space: nowrap;
+  display: inline-block;
+  background-color: #FFFFFF;
+  padding: 2px 0px;
+  overflow: hidden;
+  line-height: 1;
+  opacity: 0.8;
+  transition: opacity 0.3s ease;
   position: fixed;
-  bottom: 40px;
-  left: 60px;
-  width: 280px;
-  height: 400px;
-  background-image: url('assets/img/moleskine.jpg');
+  left: calc(16.666% - 40px);
+  bottom: 80px;
+  transform: translateX(-50%);
+  z-index: 10;
+  cursor: pointer;
+}
+
+/* Toshiba Image - Center Third */
+.toshiba-image {
+  position: fixed;
+  left: 33.333%;
+  top: 0;
+  width: 33.333%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 3;
+  pointer-events: none;
+}
+
+.toshiba-layer {
+  position: absolute;
+  width: 400px;
+  height: 600px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.toshiba-layer-1 {
+  background-image: url('assets/img/toshiba1.jpg');
+}
+
+.toshiba-layer-2 {
+  background-image: url('assets/img/toshiba2.avif');
+  opacity: 0;
+}
+
+/* Diary Image - Right Third */
+.diary-image {
+  position: fixed;
+  right: 0;
+  top: 0;
+  width: 33.333%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image: url('assets/img/diary.jpg');
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
   z-index: 5;
   pointer-events: none;
-  transform: perspective(1200px) rotateY(-8deg) rotateX(2deg) rotateZ(-3deg);
-  filter: drop-shadow(-8px 12px 20px rgba(0, 0, 0, 0.5)) drop-shadow(-2px 4px 8px rgba(0, 0, 0, 0.3));
 }
