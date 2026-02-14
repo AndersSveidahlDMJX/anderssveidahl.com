@@ -433,7 +433,7 @@ header h1 {
   pointer-events: auto;
   transform-origin: center center;
   cursor: pointer;
-  clip-path: polygon(15% 10%, 85% 10%, 85% 90%, 15% 90%);
+  clip-path: polygon(8% 5%, 92% 5%, 92% 95%, 8% 95%);
 }
 
 .toshiba-layer-1 {
