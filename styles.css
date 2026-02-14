@@ -427,7 +427,7 @@ header h1 {
   background-repeat: no-repeat;
   background-position: center;
   cursor: pointer;
-  transition: transform 0.3s ease !important;
+  transition: opacity 0.3s ease !important, transform 0.3s ease !important;
   pointer-events: auto;
   transform-origin: center center;
 }
@@ -438,10 +438,21 @@ header h1 {
 
 .toshiba-layer-1 {
   background-image: url('assets/img/toshiba1.png');
+  opacity: 0;
+  transition: opacity 0.3s ease !important;
+}
+
+.toshiba-layer-1:hover {
+  opacity: 1;
 }
 
 .toshiba-layer-2 {
   background-image: url('assets/img/toshiba2.png');
+  opacity: 1;
+  transition: opacity 0.3s ease !important;
+}
+
+.toshiba-layer-2:hover {
   opacity: 0;
 }
 
