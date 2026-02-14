@@ -612,7 +612,7 @@ video {
   will-change: opacity;
   position: fixed;
   left: calc(16.67% - 510px);
-  top: calc(50% + 180px);
+  top: calc(50% - 117px);
   transform: translateX(-50%) translateY(-50%);
 }
 
