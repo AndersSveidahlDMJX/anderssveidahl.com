@@ -57,7 +57,7 @@ header {
   justify-content: center;
   box-shadow: none;
   position: relative;
-  margin-bottom: 50px;
+  margin-bottom: 0;
   z-index: 20;
 }
 
