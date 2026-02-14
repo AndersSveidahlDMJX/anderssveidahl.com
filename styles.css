@@ -734,7 +734,7 @@ video {
 .toshiba-image {
   position: fixed;
   top: 50%;
-  left: 33.33%;
+  left: 16.67%;
   width: 280px;
   height: 400px;
   background-image: url('assets/img/toshiba1.png');
