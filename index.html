@@ -227,6 +227,10 @@
             if (headerH1) {
                 headerH1.style.opacity = '1';
             }
+            const moleskine = document.querySelector('.moleskine-notebook');
+            if (moleskine) {
+                moleskine.style.opacity = '0.5';
+            }
             if (workText) {
                 workText.style.opacity = '0.5';
             }
@@ -245,6 +249,7 @@
                     // After reveal completes, dim all text elements
                     setTimeout(() => {
                         if (headerH1) headerH1.style.opacity = '1'; // Header never dims
+                        if (moleskine) moleskine.style.opacity = '0.5';
                         if (workText) workText.style.opacity = '0.5';
                         if (otherText) otherText.style.opacity = '0.5';
                         if (aboutText) aboutText.style.opacity = '0.5';
