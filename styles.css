@@ -735,8 +735,8 @@ video {
   position: fixed;
   top: 50%;
   left: 50%;
-  width: 560px;
-  height: 800px;
+  width: 280px;
+  height: 400px;
   background-image: url('assets/img/toshiba1.png');
   background-size: contain;
   background-repeat: no-repeat;
