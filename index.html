@@ -40,7 +40,9 @@
 </head>
 
 <body>
-    <div class="moleskine-notebook"></div>
+    <div class="moleskine-notebook">
+        <a href="work.html" class="moleskine-link work-text" data-en-text="WORK" data-da-text="ARBEJDE"><span style="color: #FFFFFF;">W</span><span style="color: #FFFFFF;">O</span><span style="color: #FFFFFF;">R</span><span style="color: #FFFFFF;">K</span></a>
+    </div>
     <header>
         <div></div>
         <h1><span style="color: #FFFFFF;">A</span><span style="color: #FFFFFF;">n</span><span style="color: #FFFFFF;">d</span><span style="color: #FFFFFF;">e</span><span style="color: #FFFFFF;">r</span><span style="color: #FFFFFF;">s</span><span style="color: #FFFFFF;"> </span><span style="color: #FFFFFF;">S</span><span style="color: #FFFFFF;">v</span><span style="color: #FFFFFF;">e</span><span style="color: #FFFFFF;">i</span><span style="color: #FFFFFF;">d</span><span style="color: #FFFFFF;">a</span><span style="color: #FFFFFF;">h</span><span style="color: #FFFFFF;">l</span></h1>
@@ -91,7 +93,6 @@
         
         <div class="text-container layout3">
             <div class="main-content">
-                <a href="work.html" class="text-link work-text" data-en-text="WORK" data-da-text="ARBEJDE"><span style="color: #FFFFFF;">W</span><span style="color: #FFFFFF;">O</span><span style="color: #FFFFFF;">R</span><span style="color: #FFFFFF;">K</span></a>
                 <a href="other.html" class="text-link other-text" data-en-text="...aaand not work?" data-da-text="...oooog ikke arbejde?"></a>
             </div>
             <footer class="footer-section">
@@ -171,14 +172,19 @@
             // Moleskine notebook hover effect
             const moleskine = document.querySelector('.moleskine-notebook');
             if (moleskine) {
-                moleskine.addEventListener('mouseenter', function() {
+                console.log('Moleskine element found:', moleskine);
+                moleskine.addEventListener('mouseover', function(e) {
+                    console.log('Mouseenter detected');
                     this.style.transform = 'perspective(1200px) rotateY(-8deg) rotateX(2deg) rotateZ(-3deg) scale(1.2)';
                     this.style.filter = 'drop-shadow(-12px 16px 28px rgba(0, 0, 0, 0.6)) drop-shadow(-3px 6px 12px rgba(0, 0, 0, 0.4))';
                 });
-                moleskine.addEventListener('mouseleave', function() {
+                moleskine.addEventListener('mouseout', function(e) {
+                    console.log('Mouseleave detected');
                     this.style.transform = 'perspective(1200px) rotateY(-8deg) rotateX(2deg) rotateZ(-3deg)';
                     this.style.filter = 'drop-shadow(-8px 12px 20px rgba(0, 0, 0, 0.5)) drop-shadow(-2px 4px 8px rgba(0, 0, 0, 0.3))';
                 });
+            } else {
+                console.log('Moleskine element NOT found');
             }
             // Set initial language
             setLanguage(currentLanguage);
