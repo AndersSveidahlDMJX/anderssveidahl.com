@@ -343,7 +343,7 @@ header h1 {
   background-position: center;
   transition: transform 0.3s ease !important;
   transform-origin: center center;
-  clip-path: inset(8% 5% 12% 5%);
+  clip-path: inset(15% 5% 18% 5%);
 }
 
 .moleskine-notebook:hover {
