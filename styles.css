@@ -452,7 +452,7 @@ header h1 {
   z-index: 2;
   opacity: 0;
   display: block !important;
-  animation: show-toshiba-1 2s linear infinite !important;
+  animation: none;
 }
 
 .toshiba-layer-2 {
@@ -470,6 +470,11 @@ header h1 {
 .toshiba-layer-1:hover,
 .toshiba-layer-2:hover {
   transform: scale(1.15) !important;
+}
+
+.toshiba-layer-1:hover {
+  animation: show-toshiba-1 2s linear infinite !important;
+  animation-delay: 0.3s;
 }
 
 /* Diary Image - Right Third */
