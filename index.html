@@ -168,6 +168,18 @@
                 });
             });
 
+            // Moleskine notebook hover effect
+            const moleskine = document.querySelector('.moleskine-notebook');
+            if (moleskine) {
+                moleskine.addEventListener('mouseenter', function() {
+                    this.style.transform = 'perspective(1200px) rotateY(-8deg) rotateX(2deg) rotateZ(-3deg) scale(1.2)';
+                    this.style.filter = 'drop-shadow(-12px 16px 28px rgba(0, 0, 0, 0.6)) drop-shadow(-3px 6px 12px rgba(0, 0, 0, 0.4))';
+                });
+                moleskine.addEventListener('mouseleave', function() {
+                    this.style.transform = 'perspective(1200px) rotateY(-8deg) rotateX(2deg) rotateZ(-3deg)';
+                    this.style.filter = 'drop-shadow(-8px 12px 20px rgba(0, 0, 0, 0.5)) drop-shadow(-2px 4px 8px rgba(0, 0, 0, 0.3))';
+                });
+            }
             // Set initial language
             setLanguage(currentLanguage);
         });
