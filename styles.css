@@ -420,31 +420,19 @@ header h1 {
 }
 
 @keyframes show-toshiba-2 {
-  0% {
+  0%, 49% {
     opacity: 1;
   }
-  49% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0;
-  }
-  100% {
+  50%, 100% {
     opacity: 0;
   }
 }
 
 @keyframes show-toshiba-1 {
-  0% {
+  0%, 49% {
     opacity: 0;
   }
-  50% {
-    opacity: 0;
-  }
-  50.1% {
-    opacity: 1;
-  }
-  100% {
+  50%, 100% {
     opacity: 1;
   }
 }
@@ -456,14 +444,8 @@ header h1 {
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
-  cursor: pointer;
-  pointer-events: auto;
+  pointer-events: none;
   transform-origin: center center;
-  transition: transform 0.3s ease !important;
-}
-
-.toshiba-layer:hover {
-  transform: scale(1.15) !important;
 }
 
 .toshiba-layer-1 {
@@ -484,12 +466,12 @@ header h1 {
 .toshiba-image:hover .toshiba-layer-1 {
   display: block;
   transform: scale(1.15) !important;
-  animation: show-toshiba-1 2s ease-in-out 0.3s infinite !important;
+  animation: show-toshiba-1 2s linear 0.3s infinite !important;
 }
 
 .toshiba-image:hover .toshiba-layer-2 {
   transform: scale(1.15) !important;
-  animation: show-toshiba-2 2s ease-in-out 0.3s infinite !important;
+  animation: show-toshiba-2 2s linear 0.3s infinite !important;
 }
 
 /* Diary Image - Right Third */
