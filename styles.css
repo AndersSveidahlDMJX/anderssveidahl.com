@@ -739,20 +739,38 @@ video {
   left: 50%;
   width: 187px;
   height: 267px;
-  background-image: url('assets/img/toshiba2.png');
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
   z-index: 50;
   pointer-events: auto;
   transform: translateX(-50%) translateY(-50%);
-  filter: drop-shadow(-8px 12px 20px rgba(0, 0, 0, 0.5)) drop-shadow(-2px 4px 8px rgba(0, 0, 0, 0.3));
   cursor: pointer;
+  filter: drop-shadow(-8px 12px 20px rgba(0, 0, 0, 0.5)) drop-shadow(-2px 4px 8px rgba(0, 0, 0, 0.3));
   transition: transform 0.3s ease, filter 0.3s ease;
-  opacity: 1;
 }
 
 .toshiba-image:hover {
   transform: translateX(-50%) translateY(-50%) scale(1.15);
   filter: drop-shadow(-10px 14px 24px rgba(0, 0, 0, 0.6)) drop-shadow(-3px 5px 10px rgba(0, 0, 0, 0.4));
+}
+
+/* Toshiba image layers for instant switching */
+.toshiba-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  transition: opacity 0s; /* No transition - instant switch */
+}
+
+.toshiba-layer-1 {
+  background-image: url('assets/img/toshiba2.png');
+  opacity: 1;
+}
+
+.toshiba-layer-2 {
+  background-image: url('assets/img/toshiba1.png');
+  opacity: 0;
 }
