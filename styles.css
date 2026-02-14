@@ -523,22 +523,22 @@ video {
   display: inline-block;
   width: 400px;
   min-height: 60px;
-  overflow: hidden;
+  overflow: visible;
   margin: 0;
   opacity: 0.8;
   transition: opacity 0.3s ease;
-  will-change: transform;
+  will-change: opacity;
   position: fixed;
-  top: 55%;
+  top: calc(50% + 180px);
   left: 50%;
-  transform: translateX(-50%) translateY(15px);
+  transform: translateX(-50%);
   letter-spacing: 2px;
   text-decoration: none;
   cursor: pointer;
   background-color: transparent;
   padding: 0px 0px 0px 0px;
   border-radius: 5px;
-  line-height: 1;
+  line-height: 1.2;
 }
 
 .moleskine-link {
