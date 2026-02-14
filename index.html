@@ -340,7 +340,9 @@
                     // Set initial image
                     dvdElement.style.backgroundImage = slides[currentImageIndex].style.backgroundImage;
                     
-                    // Animation loop
+                    // Animation loop - use transform for better Safari performance
+                    let lastUpdateX = x;
+                    let lastUpdateY = y;
                     const animate = () => {
                         x += vx;
                         y += vy;
@@ -364,8 +366,12 @@
                         x = Math.max(0, Math.min(x, window.innerWidth - 150));
                         y = Math.max(0, Math.min(y, window.innerHeight - 150));
                         
-                        dvdElement.style.left = x + 'px';
-                        dvdElement.style.top = y + 'px';
+                        // Only update DOM if position changed significantly (throttle updates for Safari)
+                        if (Math.abs(x - lastUpdateX) > 0.5 || Math.abs(y - lastUpdateY) > 0.5) {
+                            dvdElement.style.transform = `translate3d(${x}px, ${y}px, 0)`;
+                            lastUpdateX = x;
+                            lastUpdateY = y;
+                        }
                         
                         dvdAnimation = requestAnimationFrame(animate);
                     };
