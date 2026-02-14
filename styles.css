@@ -737,8 +737,8 @@ video {
   position: fixed;
   top: 50%;
   left: 50%;
-  width: 187px;
-  height: 267px;
+  width: 224px;
+  height: 320px;
   z-index: 50;
   pointer-events: auto;
   transform: translateX(-50%) translateY(-50%);
