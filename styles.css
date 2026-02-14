@@ -413,15 +413,6 @@ header h1 {
   pointer-events: none;
 }
 
-@keyframes show-toshiba-2 {
-  0%, 49% {
-    opacity: 1;
-  }
-  50%, 100% {
-    opacity: 0;
-  }
-}
-
 @keyframes show-toshiba-1 {
   0%, 49% {
     opacity: 0;
@@ -468,7 +459,6 @@ header h1 {
 .toshiba-image:hover .toshiba-layer-2,
 .toshiba-layer-2:hover {
   transform: scale(1.15) !important;
-  animation: show-toshiba-2 2s linear 0.3s infinite !important;
 }
 
 /* Diary Image - Right Third */
