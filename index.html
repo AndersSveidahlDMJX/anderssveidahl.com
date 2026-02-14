@@ -159,7 +159,8 @@
                 workTextCopy.textContent = translations[lang]['WORK'];
             }
             if (workTextLeft) {
-                workTextLeft.textContent = translations[lang]['WORK'];
+                const textKey = lang === 'en' ? workTextLeft.getAttribute('data-en-text') : workTextLeft.getAttribute('data-da-text');
+                workTextLeft.textContent = textKey;
             }
             if (aboutText) {
                 aboutText.textContent = translations[lang]['about'];
