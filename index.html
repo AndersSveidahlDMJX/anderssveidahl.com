@@ -45,7 +45,10 @@
     </a>
     
     <!-- Toshiba Image in Center -->
-    <div class="toshiba-image"></div>
+    <div class="toshiba-image">
+      <div class="toshiba-layer toshiba-layer-1"></div>
+      <div class="toshiba-layer toshiba-layer-2"></div>
+    </div>
     <header>
         <div></div>
         <h1><span style="color: #FFFFFF;">A</span><span style="color: #FFFFFF;">n</span><span style="color: #FFFFFF;">d</span><span style="color: #FFFFFF;">e</span><span style="color: #FFFFFF;">r</span><span style="color: #FFFFFF;">s</span><span style="color: #FFFFFF;"> </span><span style="color: #FFFFFF;">S</span><span style="color: #FFFFFF;">v</span><span style="color: #FFFFFF;">e</span><span style="color: #FFFFFF;">i</span><span style="color: #FFFFFF;">d</span><span style="color: #FFFFFF;">a</span><span style="color: #FFFFFF;">h</span><span style="color: #FFFFFF;">l</span></h1>
@@ -367,38 +370,37 @@
                 });
             }
             
-            // Preload toshiba images to prevent blank flashes during switching
-            const img1 = new Image();
-            img1.src = 'assets/img/toshiba1.png';
-            const img2 = new Image();
-            img2.src = 'assets/img/toshiba2.png';
+            // Preload toshiba images (already loaded in CSS as background-image)
             
             // Add hover effect for toshiba image - toggle between toshiba1 and toshiba2
             const toshibaImage = document.querySelector('.toshiba-image');
             if (toshibaImage) {
+                const layer1 = document.querySelector('.toshiba-layer-1');
+                const layer2 = document.querySelector('.toshiba-layer-2');
+                
                 let toshibaToggleTimeout = null;
                 let toshibaToggleInterval = null;
-                let isToshiba2 = true; // Currently showing toshiba2
+                let showingLayer1 = true; // Currently showing layer 1 (toshiba2)
                 
                 toshibaImage.addEventListener('mouseenter', function() {
-                    // After 0.5 seconds, toggle the image (instant switch, no fade)
+                    // After 0.5 seconds, toggle the layers (instant switch)
                     toshibaToggleTimeout = setTimeout(() => {
-                        // First toggle - instant switch
-                        isToshiba2 = !isToshiba2;
-                        const imageUrl = isToshiba2 ? 'assets/img/toshiba2.png' : 'assets/img/toshiba1.png';
-                        toshibaImage.style.backgroundImage = `url('${imageUrl}')`;
+                        // First toggle
+                        showingLayer1 = !showingLayer1;
+                        layer1.style.opacity = showingLayer1 ? '1' : '0';
+                        layer2.style.opacity = showingLayer1 ? '0' : '1';
                         
-                        // Continue toggling every 0.5 seconds while hovering (instant switches)
+                        // Continue toggling every 0.5 seconds while hovering
                         toshibaToggleInterval = setInterval(() => {
-                            isToshiba2 = !isToshiba2;
-                            const imageUrl = isToshiba2 ? 'assets/img/toshiba2.png' : 'assets/img/toshiba1.png';
-                            toshibaImage.style.backgroundImage = `url('${imageUrl}')`;
+                            showingLayer1 = !showingLayer1;
+                            layer1.style.opacity = showingLayer1 ? '1' : '0';
+                            layer2.style.opacity = showingLayer1 ? '0' : '1';
                         }, 500); // 0.5 second interval between switches
                     }, 500); // 0.5 second delay before first switch
                 });
                 
                 toshibaImage.addEventListener('mouseleave', function() {
-                    // Stop toggling and reset to toshiba2
+                    // Stop toggling and reset to layer 1 (toshiba2)
                     if (toshibaToggleTimeout) {
                         clearTimeout(toshibaToggleTimeout);
                         toshibaToggleTimeout = null;
@@ -407,8 +409,9 @@
                         clearInterval(toshibaToggleInterval);
                         toshibaToggleInterval = null;
                     }
-                    isToshiba2 = true;
-                    toshibaImage.style.backgroundImage = 'url(\'assets/img/toshiba2.png\')';
+                    showingLayer1 = true;
+                    layer1.style.opacity = '1';
+                    layer2.style.opacity = '0';
                 });
             }
             
