@@ -442,14 +442,16 @@ header h1 {
   background-repeat: no-repeat;
   background-position: center;
   cursor: pointer;
-  transition: transform 0.3s ease !important;
   pointer-events: auto;
   transform-origin: center center;
 }
 
+.toshiba-layer {
+  transition: transform 0.3s ease !important;
+}
+
 .toshiba-layer:hover {
   transform: scale(1.15) !important;
-  animation: toshiba-flip 1s ease-in-out 0.3s infinite !important;
 }
 
 .toshiba-layer-1 {
@@ -469,11 +471,11 @@ header h1 {
 
 .toshiba-image:hover .toshiba-layer-1 {
   display: block;
-  animation: toshiba-flip 1s ease-in-out 0.3s infinite reverse !important;
+  animation: toshiba-flip 2s ease-in-out 0.3s infinite reverse !important;
 }
 
 .toshiba-image:hover .toshiba-layer-2 {
-  animation: toshiba-flip 1s ease-in-out 0.3s infinite !important;
+  animation: toshiba-flip 2s ease-in-out 0.3s infinite !important;
 }
 
 /* Diary Image - Right Third */
