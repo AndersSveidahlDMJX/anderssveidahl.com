@@ -413,7 +413,7 @@ header h1 {
   align-items: center;
   justify-content: center;
   z-index: 5;
-  pointer-events: auto;
+  pointer-events: none;
 }
 
 @keyframes show-toshiba-1 {
@@ -465,14 +465,16 @@ header h1 {
   background-image: url('assets/img/toshiba2.png');
   z-index: 1;
   will-change: transform;
+  transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
 }
 
-.toshiba-layer-1:hover,
-.toshiba-layer-2:hover {
+/* Scale toshiba-2 on hover */
+.toshiba-layer:hover .toshiba-layer-2 {
   transform: scale(1.15) !important;
 }
 
-.toshiba-layer-1:hover {
+/* Start animation on toshiba-1 after scale completes (0.3s delay) */
+.toshiba-layer:hover .toshiba-layer-1 {
   animation: show-toshiba-1 2s linear infinite !important;
   animation-delay: 0.3s;
 }
