@@ -40,10 +40,12 @@ body {
   height: 100vh;
   display: flex;
   flex-direction: column;
-  background-image: url('assets/img/wooden_desk.avif');
+  background-color: #3d2817;
+  background-image: url('/assets/img/wooden_desk.avif');
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
+  background-repeat: no-repeat;
   padding: 0;
   box-sizing: border-box;
   -webkit-font-smoothing: antialiased;
