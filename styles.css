@@ -693,12 +693,114 @@ video {
   background-repeat: no-repeat;
   background-position: center;
   z-index: 5;
-  pointer-events: none;
+  pointer-events: auto;
   transform: perspective(1200px) rotateY(-8deg) rotateX(2deg) rotateZ(-3deg);
   filter: drop-shadow(-8px 12px 20px rgba(0, 0, 0, 0.5)) drop-shadow(-2px 4px 8px rgba(0, 0, 0, 0.3));
+  text-decoration: none;
 }
 
-/* Moleskine Notebook on Desk */
+.moleskine-link {
+  display: none;
+}
+
+/* Work Text Copy - duplicate text for fixed positioning */
+.work-text-copy {
+  font-size: 1.335rem;
+  font-family: "Impact Label", Impact, "Arial Black", sans-serif !important;
+  font-weight: 400;
+  text-align: center;
+  color: #000000;
+  white-space: nowrap;
+  display: inline-block;
+  background-color: #FFFFFF;
+  padding: 2px 0px;
+  overflow: hidden;
+  line-height: 1;
+  opacity: 0.8;
+  transition: opacity 0.3s ease;
+  will-change: opacity;
+  position: fixed;
+  left: calc(33.33% - 50px);
+  top: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  z-index: 10;
+  pointer-events: auto;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* Work Text Left - positioned opposite */
+.work-text-left {
+  font-size: 1.335rem;
+  font-family: "Impact Label", Impact, "Arial Black", sans-serif !important;
+  font-weight: 400;
+  text-align: center;
+  color: #000000;
+  white-space: nowrap;
+  display: inline-block;
+  background-color: #FFFFFF;
+  padding: 2px 0px;
+  overflow: hidden;
+  line-height: 1;
+  opacity: 0.8;
+  transition: opacity 0.3s ease;
+  will-change: opacity;
+  position: fixed;
+  left: calc(16.67% - 50px);
+  top: calc(50% + 117px);
+  transform: translateX(-50%) translateY(-50%);
+  z-index: 10;
+  pointer-events: auto;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* Diary Image */
+.diary-image {
+  position: fixed;
+  right: 60px;
+  top: 50%;
+  width: 280px;
+  height: 400px;
+  background-image: url('assets/img/diary.avif');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  transform: translateY(-50%) perspective(1200px) rotateY(8deg) rotateX(2deg) rotateZ(3deg);
+  filter: drop-shadow(8px 12px 20px rgba(0, 0, 0, 0.5)) drop-shadow(2px 4px 8px rgba(0, 0, 0, 0.3));
+  z-index: 5;
+  pointer-events: none;
+}
+
+/* Toshiba Image in Center */
+.toshiba-image {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  width: 400px;
+  height: 600px;
+  transform: translateX(-50%) translateY(-50%);
+  z-index: 3;
+  pointer-events: none;
+}
+
+.toshiba-layer {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.toshiba-layer-1 {
+  background-image: url('assets/img/toshiba1.avif');
+}
+
+.toshiba-layer-2 {
+  background-image: url('assets/img/toshiba2.avif');
+  opacity: 0;
+}/* Moleskine Notebook on Desk */
 .moleskine-notebook {
   position: fixed;
   bottom: 40px;

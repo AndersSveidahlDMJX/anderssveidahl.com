@@ -39,7 +39,16 @@
 </head>
 
 <body>
-    <div class="moleskine-notebook"></div>
+    <a href="work.html" class="moleskine-notebook">
+        <span class="moleskine-link work-text" data-en-text="WORK" data-da-text="ARBEJDE"><span style="color: #FFFFFF;">W</span><span style="color: #FFFFFF;">O</span><span style="color: #FFFFFF;">R</span><span style="color: #FFFFFF;">K</span></span>
+    </a>
+
+    <div class="diary-image"></div>
+
+    <div class="toshiba-image">
+      <div class="toshiba-layer toshiba-layer-1"></div>
+      <div class="toshiba-layer toshiba-layer-2"></div>
+    </div>
     <header>
         <div></div>
         <h1><span style="color: #FFFFFF;">A</span><span style="color: #FFFFFF;">n</span><span style="color: #FFFFFF;">d</span><span style="color: #FFFFFF;">e</span><span style="color: #FFFFFF;">r</span><span style="color: #FFFFFF;">s</span><span style="color: #FFFFFF;"> </span><span style="color: #FFFFFF;">S</span><span style="color: #FFFFFF;">v</span><span style="color: #FFFFFF;">e</span><span style="color: #FFFFFF;">i</span><span style="color: #FFFFFF;">d</span><span style="color: #FFFFFF;">a</span><span style="color: #FFFFFF;">h</span><span style="color: #FFFFFF;">l</span></h1>
@@ -90,7 +99,8 @@
         
         <div class="text-container layout3">
             <div class="main-content">
-                <a href="work.html" class="text-link work-text" data-en-text="WORK" data-da-text="ARBEJDE"><span style="color: #FFFFFF;">W</span><span style="color: #FFFFFF;">O</span><span style="color: #FFFFFF;">R</span><span style="color: #FFFFFF;">K</span></a>
+                <a href="work.html" class="text-link work-text-copy" data-en-text="WORK" data-da-text="ARBEJDE"></a>
+                <a href="work.html" class="text-link work-text-left" data-en-text="not work" data-da-text="ikke arbejde"></a>
                 <a href="other.html" class="text-link other-text" data-en-text="...aaand not work?" data-da-text="...oooog ikke arbejde?"></a>
             </div>
             <footer class="footer-section">
@@ -134,19 +144,29 @@
             localStorage.setItem('language', lang);
 
             // Update all translatable elements
-            const workText = document.querySelector('.work-text');
+            const moleskineWorkText = document.querySelector('.moleskine-link.work-text');
+            const workTextCopy = document.querySelector('.work-text-copy');
+            const workTextLeft = document.querySelector('.work-text-left');
             const otherText = document.querySelector('.other-text');
             const aboutText = document.querySelector('.about-text');
             const langButtons = document.querySelectorAll('.lang-btn');
 
-            if (workText) {
-                workText.textContent = translations[lang]['WORK'];
+            const dataAttr = lang === 'en' ? 'data-en-text' : 'data-da-text';
+            
+            if (moleskineWorkText) {
+                moleskineWorkText.textContent = moleskineWorkText.getAttribute(dataAttr);
+            }
+            if (workTextCopy) {
+                workTextCopy.textContent = workTextCopy.getAttribute(dataAttr);
+            }
+            if (workTextLeft) {
+                workTextLeft.textContent = workTextLeft.getAttribute(dataAttr);
             }
             if (otherText) {
-                otherText.innerHTML = createColoredSpans(translations[lang]['...aaand not work?']);
+                otherText.innerHTML = createColoredSpans(otherText.getAttribute(dataAttr));
             }
             if (aboutText) {
-                aboutText.textContent = translations[lang]['about'];
+                aboutText.textContent = aboutText.getAttribute(dataAttr);
             }
 
             // Update active button
