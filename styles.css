@@ -528,7 +528,7 @@ video {
   transition: opacity 0.3s ease;
   will-change: transform;
   position: fixed;
-  top: calc(50% + 420px);
+  top: calc(50% + 320px);
   left: 16.67%;
   transform: translateX(-50%);
   letter-spacing: 2px;
@@ -709,8 +709,8 @@ video {
   position: fixed;
   top: 50%;
   left: 16.67%;
-  width: 560px;
-  height: 800px;
+  width: 420px;
+  height: 600px;
   background-image: url('assets/img/moleskine.png');
   background-size: contain;
   background-repeat: no-repeat;
