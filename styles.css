@@ -434,6 +434,7 @@ header h1 {
   transform-origin: center center;
   cursor: pointer;
   clip-path: polygon(8% 5%, 92% 5%, 92% 95%, 8% 95%);
+  transition: transform 0.3s ease !important;
 }
 
 .toshiba-layer-1 {
@@ -456,11 +457,12 @@ header h1 {
 .toshiba-image:hover .toshiba-layer-1,
 .toshiba-layer-1:hover {
   display: block;
-  transform: scale(1.15) !important;
   animation: show-toshiba-1 2s linear 0.3s infinite !important;
 }
 
+.toshiba-image:hover .toshiba-layer-1,
 .toshiba-image:hover .toshiba-layer-2,
+.toshiba-layer-1:hover,
 .toshiba-layer-2:hover {
   transform: scale(1.15) !important;
 }
