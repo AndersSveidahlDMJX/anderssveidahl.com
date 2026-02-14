@@ -519,12 +519,16 @@ video {
   opacity: 1;
   transition: opacity 0.3s ease;
   will-change: transform;
-  position: fixed;
-  bottom: 240px;
-  left: 200px;
-  transform: translate(-50%, 50%) rotate(-2deg);
-  z-index: 101;
+  position: relative;
+  transform: rotate(-2deg);
   letter-spacing: 2px;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.moleskine-link {
+  position: relative !important;
+  z-index: 101 !important;
 }
 
 .work-text.playzone-mode {
@@ -703,4 +707,13 @@ video {
   filter: drop-shadow(-8px 12px 20px rgba(0, 0, 0, 0.5)) drop-shadow(-2px 4px 8px rgba(0, 0, 0, 0.3));
   transition: transform 0.3s ease, filter 0.3s ease;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+}
+
+.moleskine-notebook:hover {
+  transform: perspective(1200px) rotateY(-8deg) rotateX(2deg) rotateZ(-3deg) scale(1.2);
+  filter: drop-shadow(-12px 16px 28px rgba(0, 0, 0, 0.6)) drop-shadow(-3px 6px 12px rgba(0, 0, 0, 0.4));
 }
