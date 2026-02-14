@@ -102,7 +102,6 @@
         
         <div class="text-container layout3">
             <div class="main-content">
-                <a href="other.html" class="text-link other-text" data-en-text="...aaand not work?" data-da-text="...oooog ikke arbejde?"></a>
                 <a href="work.html" class="text-link work-text-copy" data-en-text="WORK" data-da-text="ARBEJDE"></a>
             </div>
             <footer class="footer-section">
@@ -148,7 +147,6 @@
             // Update all translatable elements
             const workText = document.querySelector('.work-text');
             const workTextCopy = document.querySelector('.work-text-copy');
-            const otherText = document.querySelector('.other-text');
             const aboutText = document.querySelector('.about-text');
             const langButtons = document.querySelectorAll('.lang-btn');
 
@@ -157,9 +155,6 @@
             }
             if (workTextCopy) {
                 workTextCopy.textContent = translations[lang]['WORK'];
-            }
-            if (otherText) {
-                otherText.innerHTML = createColoredSpans(translations[lang]['...aaand not work?']);
             }
             if (aboutText) {
                 aboutText.textContent = translations[lang]['about'];
@@ -191,17 +186,15 @@
         document.addEventListener('DOMContentLoaded', function () {
             const headerH1 = document.querySelector('header h1');
             const workText = document.querySelector('.work-text');
-            const otherText = document.querySelector('.other-text');
             const aboutText = document.querySelector('.about-text');
             
             // Initially hide all text elements
             if (headerH1) headerH1.style.opacity = '0';
             if (aboutText) aboutText.style.opacity = '0';
-            if (otherText) otherText.style.opacity = '0';
             
             function revealLetters(element, letterDuration, startDelay = 0) {
-                // Check if this element has colored spans (work-text or other-text)
-                if (element.classList.contains('work-text') || element.classList.contains('other-text')) {
+                // Check if this element has colored spans (work-text)
+                if (element.classList.contains('work-text')) {
                     // For colored span elements, preserve the HTML structure
                     const spans = element.querySelectorAll('span');
                     spans.forEach(span => {
