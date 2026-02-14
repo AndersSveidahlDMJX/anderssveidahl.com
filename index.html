@@ -33,6 +33,8 @@
     </script>
     
     <link rel="canonical" href="https://anderssveidahl.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="styles.css">
 </head>
 
@@ -218,39 +220,18 @@
                 }
             }
             
-            // Timing sequence:
-            // 0.5s: Anders Sveidahl revealed
-            setTimeout(() => {
-                if (headerH1) {
-                    headerH1.style.transition = 'opacity 0.5s ease';
-                    headerH1.style.opacity = '1';
-                }
-            }, 500);
+            // Show all elements immediately on page load
+            if (headerH1) {
+                headerH1.style.opacity = '1';
+            }
+            if (workText) {
+                workText.style.opacity = '0.5';
+            }
+            if (aboutText) {
+                aboutText.style.opacity = '0.5';
+            }
             
-            // 1.5s: About revealed
-            setTimeout(() => {
-                if (aboutText) {
-                    aboutText.style.transition = 'opacity 0.5s ease';
-                    aboutText.style.opacity = '1';
-                }
-            }, 1500);
-            
-            // 2.5s: Work revealed with tilt shift effect on about and ...aaand not work?
-            setTimeout(() => {
-                if (workText) {
-                    workText.style.transition = 'opacity 0.5s ease';
-                    workText.style.opacity = '1';
-                }
-                // Apply tilt shift rotation effect to other elements
-                if (aboutText) {
-                    aboutText.style.animation = 'tiltShift 0.6s ease-in-out';
-                }
-                if (otherText) {
-                    otherText.style.animation = 'tiltShift 0.6s ease-in-out';
-                }
-            }, 2500);
-            
-            // 3.5s: ...aaand not work? revealed with letter-by-letter effect
+            // ...aaand not work? starts with letter-by-letter reveal animation
             setTimeout(() => {
                 if (otherText) {
                     otherText.style.transition = 'opacity 0.5s ease';
@@ -266,7 +247,7 @@
                         if (aboutText) aboutText.style.opacity = '0.5';
                     }, animationDuration);
                 }
-            }, 3500);
+            }, 500);
             
             // Add hover effect for work text - DVD bouncing animation
             if (workText) {
@@ -309,7 +290,7 @@
                     y = Math.max(0, Math.min(y, window.innerHeight - 150));
                     
                     // Diagonal direction with some randomness
-                    const speed = 4; // pixels per frame
+                    const speed = 10; // pixels per frame
                     // Pick a general diagonal direction (roughly toward opposite corner)
                     let vx, vy;
                     const quadrant = Math.floor(Math.random() * 4);
@@ -340,10 +321,9 @@
                     // Set initial image
                     dvdElement.style.backgroundImage = slides[currentImageIndex].style.backgroundImage;
                     
-                    // Animation loop - use transform for better Safari performance
-                    let lastUpdateX = x;
-                    let lastUpdateY = y;
-                    const animate = () => {
+                    // Animation loop - use setInterval for better Safari performance
+                    let bounceCount = 0;
+                    let animationInterval = setInterval(() => {
                         x += vx;
                         y += vy;
                         
@@ -366,17 +346,12 @@
                         x = Math.max(0, Math.min(x, window.innerWidth - 150));
                         y = Math.max(0, Math.min(y, window.innerHeight - 150));
                         
-                        // Only update DOM if position changed significantly (throttle updates for Safari)
-                        if (Math.abs(x - lastUpdateX) > 0.5 || Math.abs(y - lastUpdateY) > 0.5) {
-                            dvdElement.style.transform = `translate3d(${x}px, ${y}px, 0)`;
-                            lastUpdateX = x;
-                            lastUpdateY = y;
-                        }
-                        
-                        dvdAnimation = requestAnimationFrame(animate);
-                    };
+                        // Update position only
+                        dvdElement.style.transform = `translate3d(${Math.round(x)}px, ${Math.round(y)}px, 0)`;
+                    }, 16); // ~60fps
                     
-                    dvdAnimation = requestAnimationFrame(animate);
+                    // Store interval ID for cleanup
+                    dvdAnimation = animationInterval;
                     
                     // Brighten work, dim others
                     if (workText) workText.style.opacity = '1';
@@ -387,7 +362,7 @@
                 workText.addEventListener('mouseleave', function() {
                     // Stop animation
                     if (dvdAnimation) {
-                        cancelAnimationFrame(dvdAnimation);
+                        clearInterval(dvdAnimation);
                         dvdAnimation = null;
                     }
                     
@@ -425,7 +400,8 @@
                     // After all letters fade out, change to "Huh?"
                     setTimeout(() => {
                         workText.innerHTML = '<span style="color: #FF0000;">H</span><span style="color: #FFA500;">u</span><span style="color: #FFFF00;">h</span><span style="color: #00FF00;">?</span>';
-                        workText.style.fontFamily = '"Playzone", cursive';
+                        // Apply Playzone font via CSS class for better performance on Safari
+                        workText.classList.add('playzone-mode');
                         // Keep Huh? at full opacity (never dim)
                         workText.style.opacity = '1';
                         const newSpans = workText.querySelectorAll('span');
@@ -472,6 +448,8 @@
                     setTimeout(() => {
                         const workWord = translations[currentLanguage]['WORK'];
                         workText.textContent = workWord;
+                        // Remove Playzone font class and restore Times New Roman
+                        workText.classList.remove('playzone-mode');
                         workText.style.fontFamily = '"Times New Roman", serif';
                         workText.style.opacity = '0.5';
                         const newSpans = workText.querySelectorAll('span');
