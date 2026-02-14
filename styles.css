@@ -11,6 +11,11 @@
   src: local("UglyHandwriting");
 }
 
+@font-face {
+  font-family: "Impact Label";
+  src: local("Impact Label");
+}
+
 /* Rotation effect for shift when work drops */
 @keyframes tiltShift {
   0% {
@@ -33,7 +38,6 @@
 body {
   width: 100%;
   height: 100vh;
-  overflow: hidden;
   display: flex;
   flex-direction: column;
   background-color: #000000;
@@ -134,39 +138,7 @@ header h1 {
   opacity: 0.7;
 }
 
-.container {
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-  gap: 0;
-  padding: 0;
-  position: relative;
-  align-items: center;
-  justify-content: center;
-}
-.upper-half {
-  flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-decoration: none;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  position: relative;
-  overflow: hidden;
-  margin: 0;
-}
-.upper-half.expanded {
-  flex: 2;
-}
-
-.upper-half.expanded-large {
-  flex: 1;
-}
-.upper-half:hover {
-  filter: brightness(1.1);
-}
-
+/* CAROUSEL & DVD ANIMATION STYLES - PRESERVED */
 .carousel-container {
   position: absolute;
   top: 0;
@@ -197,10 +169,6 @@ header h1 {
   opacity: 1;
 }
 
-.upper-half:hover .carousel-slide {
-  filter: brightness(1) blur(4px);
-}
-
 .carousel-text {
   position: relative;
   z-index: 2;
@@ -219,24 +187,30 @@ header h1 {
   color: #ffffff;
 }
 
-.lower-half {
-  flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-decoration: none;
-  cursor: pointer;
-  transition: color 0.3s ease;
-  position: relative;
-  overflow: hidden;
-  margin: 0;
+/* DVD Bouncer Animation - Optimized for Safari */
+.dvd-bouncer {
+  position: fixed;
+  width: 150px;
+  height: 150px;
+  border-radius: 8px;
+  background-size: cover;
+  background-position: center;
+  pointer-events: none;
+  z-index: 9999;
+  will-change: transform;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  transform: translate3d(0, 0, 0);
+  -webkit-transform: translate3d(0, 0, 0);
+  -webkit-font-smoothing: antialiased;
+  image-rendering: -webkit-optimize-contrast;
 }
-.lower-half.smaller {
-  flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
+
+/* Video styles for carousel */
+video {
+  display: block;
+  width: 100%;
+  height: 100%;
 }
 
 .lower-half-video {
@@ -252,16 +226,6 @@ header h1 {
   transition: filter 0.3s ease;
 }
 
-.lower-half:hover .lower-half-video {
-  filter: brightness(1);
-}
-
-video {
-  display: block;
-  width: 100%;
-  height: 100%;
-}
-
 .other-link {
   text-decoration: none;
   filter: none !important;
@@ -270,217 +234,6 @@ video {
   display: flex;
   align-items: center;
   justify-content: center;
-}
-
-.lower-half {
-  transition: background-color 0.3s ease;
-}
-
-.lower-half:hover {
-  background-color: transparent;
-}
-
-.upper-half h1,
-.lower-half h1 {
-  font-size: 6rem;
-  font-weight: 700;
-  font-family: "Roboto", sans-serif;
-  text-transform: capitalize;
-}
-.upper-half h1 {
-  color: #333;
-  font-weight: 700;
-}
-
-.lower-half h1 {
-  color: #ffffff;
-  transition: color 0.3s ease;
-  font-weight: 100;
-}
-
-.other-link h1 {
-  filter: blur(0px) !important;
-}
-
-.lower-half > h1 {
-  filter: blur(0px) !important;
-}
-
-.lower-half:hover h1 {
-  color: #ffffff;
-}
-
-/* Subpage styles */
-.work-page {
-  background-color: #ffff00;
-  display: flex;
-  flex-direction: column;
-}
-
-.work-page .subpage-container {
-  flex: 1;
-}
-
-.other-page {
-  background-color: #00cc00;
-  display: flex;
-  flex-direction: column;
-}
-
-.other-page .subpage-container {
-  flex: 1;
-}
-
-.about-page {
-  background-color: #f5f5f5;
-  display: flex;
-  flex-direction: column;
-}
-
-.about-page .subpage-container {
-  flex: 1;
-}
-
-.work-detail-page {
-  background-color: #f5f5f5;
-  display: flex;
-  flex-direction: column;
-}
-
-.work-detail-page .subpage-container {
-  flex: 1;
-}
-
-.work-detail-content h1 {
-  font-size: 3rem;
-  color: #333;
-  font-family: Arial, sans-serif;
-}
-
-.subpage-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex: 1;
-}
-
-.work-content,
-.other-content {
-  text-align: center;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 0;
-  margin: 0;
-}
-
-.work-content h1 {
-  font-size: 3rem;
-  color: #333;
-  font-family: Arial, sans-serif;
-  margin-bottom: 30px;
-}
-
-.image-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 0;
-  width: 100vw;
-  height: calc(100vh - 70px);
-}
-
-.image-container {
-  background-color: #ddd;
-  border: 1px solid #333;
-  background-size: cover;
-  background-position: center;
-  filter: brightness(0.55);
-  transition: filter 0.3s ease;
-  cursor: pointer;
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-decoration: none;
-}
-
-.image-container:hover {
-  filter: brightness(1);
-}
-
-.work-label {
-  font-size: 2rem;
-  color: white;
-  font-family: Arial, sans-serif;
-  font-weight: bold;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-}
-
-.image-container:hover .work-label {
-  opacity: 1;
-}
-
-.other-content h1 {
-  font-size: 3rem;
-  color: #fff;
-  font-family: Arial, sans-serif;
-  margin-bottom: 30px;
-}
-
-.about-content h1 {
-  font-size: 3rem;
-  color: #333;
-  font-family: Arial, sans-serif;
-}
-
-/* Layout 2 Styles */
-.carousel-container.layout2 {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  z-index: 1;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  overflow: hidden;
-}
-
-.carousel-container.layout2 .carousel-slide {
-  filter: brightness(1) blur(4px);
-}
-
-.lower-half-video.layout2 {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw !important;
-  height: 100vh !important;
-  z-index: 1;
-  filter: brightness(0.5);
-  transition:
-    filter 0.3s ease,
-    opacity 0.3s ease;
-  opacity: 0;
-  object-fit: cover;
-}
-
-.text-container {
-  position: relative;
-  z-index: 10;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: space-around;
-  gap: 0;
-  width: 100%;
-  height: 100%;
-  padding: 0;
 }
 
 .text-link {
@@ -524,9 +277,11 @@ video {
 
 .work-text.playzone-mode {
   font-family: "Caveat", cursive !important;
-  font-size: 1.3em !important;
+  font-size: 4rem !important;
   font-weight: 700;
   will-change: transform;
+  padding-right: 20px;
+  white-space: nowrap;
 }
 
 .other-text {
@@ -570,114 +325,8 @@ video {
   text-align: center;
 }
 
-/* Letter-by-letter reveal effect handled by JavaScript */
-
-/* Layout 3 Styles: work centered, other below, about in footer */
-.container.layout3 {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
-  width: 100%;
-  position: relative;
-  padding: 0;
-  gap: 0;
-}
-
-.carousel-container.layout3 {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  z-index: 1;
-  opacity: 0;
-  transition: opacity 1s ease;
-  overflow: hidden;
-}
-
-.carousel-container.layout3 .carousel-slide {
-  filter: brightness(1) blur(4px);
-}
-
-.lower-half-video.layout3 {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw !important;
-  height: 100vh !important;
-  z-index: 1;
-  filter: brightness(0.5);
-  transition:
-    filter 0.3s ease,
-    opacity 0.3s ease;
-  opacity: 0;
-  object-fit: cover;
-}
-
-.text-container.layout3 {
-  position: relative;
-  z-index: 10;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: 100%;
-  padding: 0;
-}
-
-.text-container.layout3 .main-content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  flex: 1;
-  gap: 10px;
-  transform: translateY(0);
-}
-
-.text-container.layout3 .footer-section {
-  position: absolute;
-  bottom: 40px;
-  width: 100%;
-  display: flex;
-  justify-content: flex-end;
-  padding-right: 40px;
-}
-
 .work-text span {
   display: inline-block;
-  white-space: nowrap;
-}
-
-/* DVD Bouncer Animation - Optimized for Safari */
-.dvd-bouncer {
-  position: fixed;
-  width: 150px;
-  height: 150px;
-  border-radius: 8px;
-  background-size: cover;
-  background-position: center;
-  pointer-events: none;
-  z-index: 9999;
-  will-change: transform;
-  backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
-  transform: translate3d(0, 0, 0);
-  -webkit-transform: translate3d(0, 0, 0);
-  -webkit-font-smoothing: antialiased;
-  image-rendering: -webkit-optimize-contrast;
-}
-
-/* Playzone font styling for HUH? text */
-.work-text.playzone-mode {
-  font-family: "Caveat", cursive !important;
-  font-size: 4rem !important;
-  font-weight: 700;
-  will-change: transform;
-  padding-right: 20px;
   white-space: nowrap;
 }
 
@@ -824,4 +473,3 @@ video {
 .diary-image:hover {
   transform: scale(1.15) !important;
 }
-
