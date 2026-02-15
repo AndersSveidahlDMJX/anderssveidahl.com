@@ -54,6 +54,8 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
+  will-change: background-image;
+  content-visibility: auto;
 }
 
 .container {
@@ -381,6 +383,8 @@ header h1 {
   transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
   transform-origin: center center;
   clip-path: polygon(10% 15%, 80% 15%, 80% 85%, 10% 85%);
+  contain: layout style paint;
+  will-change: transform;
 }
 
 .moleskine-notebook:hover {
@@ -450,6 +454,8 @@ header h1 {
   z-index: 20;
   pointer-events: auto;
   text-decoration: none;
+  contain: layout style paint;
+  will-change: transform;
 }
 
 @keyframes show-toshiba-1 {
@@ -525,6 +531,8 @@ header h1 {
   clip-path: polygon(5% 15%, 85% 15%, 85% 85%, 5% 85%);
   overflow: hidden;
   margin-left: 50px;
+  contain: layout style paint;
+  will-change: transform;
 }
 
 .diary-image:hover {
