@@ -13,7 +13,7 @@
 
 @font-face {
   font-family: "Impact Label";
-  src: local("Impact Label");
+  src: url("/assets/fonts/ImpactLabel.ttf") format("truetype");
 }
 
 /* Rotation effect for shift when work drops */
@@ -145,6 +145,43 @@ header h1 {
 
 .about-link:hover {
   opacity: 0.7;
+}
+
+/* Centered viewport text - Left column (moleskine) */
+.center-text {
+  position: fixed;
+  bottom: 115px;
+  left: 16.667%;
+  transform: translateX(-50%);
+  z-index: 15;
+  text-align: center;
+  pointer-events: none;
+}
+
+.center-text p {
+  font-family: "Impact Label", sans-serif;
+  font-size: 2rem;
+  color: #000000;
+  margin: 0;
+  font-weight: 400;
+  letter-spacing: -3px;
+  background-color: #FFFFFF;
+  display: inline-block;
+  padding: 1px 2px 1px 0px;
+  line-height: 1;
+  overflow: hidden;
+}
+
+/* Center column (toshiba) text */
+.center-text.center-column {
+  left: 50%;
+  bottom: 193px;
+}
+
+/* Right column (diary) text */
+.center-text.right-column {
+  left: 83.333%;
+  bottom: 109px;
 }
 
 /* CAROUSEL & DVD ANIMATION STYLES - PRESERVED */
@@ -329,7 +366,7 @@ header h1 {
 .moleskine-notebook {
   position: fixed;
   left: 0;
-  top: 0;
+  top: 27px;
   width: 33.333%;
   height: 100vh;
   display: flex;
@@ -344,8 +381,7 @@ header h1 {
   background-position: center;
   transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
   transform-origin: center center;
-  clip-path: polygon(20% 15%, 80% 15%, 80% 85%, 20% 85%);
-  box-shadow: 6px 6px 12px rgba(0, 0, 0, 0.25), 10px 10px 25px rgba(0, 0, 0, 0.15);
+  clip-path: polygon(10% 15%, 80% 15%, 80% 85%, 10% 85%);
 }
 
 .moleskine-notebook:hover {
@@ -366,7 +402,7 @@ header h1 {
   white-space: nowrap;
   display: inline-block;
   background-color: #FFFFFF;
-  padding: 2px 0px;
+  padding: -2px 0px;
   overflow: hidden;
   line-height: 1;
   opacity: 0.8;
@@ -389,7 +425,7 @@ header h1 {
   white-space: nowrap;
   display: inline-block;
   background-color: #FFFFFF;
-  padding: 2px 0px;
+  padding: -10px 0px;
   overflow: hidden;
   line-height: 1;
   opacity: 0.8;
@@ -412,8 +448,9 @@ header h1 {
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 5;
-  pointer-events: none;
+  z-index: 20;
+  pointer-events: auto;
+  text-decoration: none;
 }
 
 @keyframes show-toshiba-1 {
@@ -425,22 +462,6 @@ header h1 {
   }
 }
 
-.toshiba-layer {
-  position: absolute;
-  width: 280px;
-  height: 420px;
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
-  pointer-events: auto;
-  transform-origin: center center;
-  cursor: pointer;
-  clip-path: polygon(8% 5%, 92% 5%, 92% 95%, 8% 95%);
-  transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
-  box-shadow: 6px 6px 12px rgba(0, 0, 0, 0.25), 10px 10px 25px rgba(0, 0, 0, 0.15);
-  will-change: transform;
-}
-
 .toshiba-layer-1 {
   position: absolute;
   width: 280px;
@@ -449,10 +470,13 @@ header h1 {
   background-repeat: no-repeat;
   background-position: center;
   background-image: url('assets/img/toshiba1.png');
-  z-index: 2;
+  z-index: 22;
   opacity: 0;
   display: block !important;
   animation: none;
+  clip-path: polygon(8% 5%, 92% 5%, 92% 95%, 8% 95%);
+  transform: scale(1.15);
+  pointer-events: none;
 }
 
 .toshiba-layer-2 {
@@ -463,20 +487,22 @@ header h1 {
   background-repeat: no-repeat;
   background-position: center;
   background-image: url('assets/img/toshiba2.png');
-  z-index: 1;
+  z-index: 21;
   will-change: transform;
   transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+  clip-path: polygon(8% 5%, 92% 5%, 92% 95%, 8% 95%);
+  transform-origin: center center;
+  cursor: pointer;
+  pointer-events: auto;
 }
 
-/* Scale toshiba-2 on hover */
-.toshiba-layer:hover .toshiba-layer-2 {
+.toshiba-layer-2:hover {
   transform: scale(1.15) !important;
 }
 
-/* Start animation on toshiba-1 after scale completes (0.3s delay) */
-.toshiba-layer:hover .toshiba-layer-1 {
-  animation: show-toshiba-1 2s linear infinite !important;
-  animation-delay: 0.3s;
+/* Start animation on toshiba-1 when toshiba2 is hovered (0.3s delay = scale duration) */
+.toshiba-layer-2:hover ~ .toshiba-layer-1 {
+  animation: show-toshiba-1 2s linear infinite 0.3s !important;
 }
 
 /* Diary Image - Right Third */
@@ -493,14 +519,16 @@ header h1 {
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
-  z-index: 5;
+  z-index: 20;
   pointer-events: auto;
   transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
   transform-origin: center center;
   clip-path: polygon(5% 15%, 85% 15%, 85% 85%, 5% 85%);
-  box-shadow: -6px 6px 12px rgba(0, 0, 0, 0.25), -10px 10px 25px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+  margin-left: 50px;
 }
 
 .diary-image:hover {
   transform: scale(1.15) !important;
 }
+
