@@ -216,13 +216,14 @@
 
         // DVD bouncing animation on toshiba hover
         document.addEventListener('DOMContentLoaded', function() {
-            const toshiba = document.querySelector('.toshiba-image');
+            const toshibaLayer1 = document.querySelector('.toshiba-layer-1');
+            const toshibaLayer2 = document.querySelector('.toshiba-layer-2');
             
-            if (toshiba) {
+            if (toshibaLayer1 && toshibaLayer2) {
                 let toshiba_dvdAnimation = null;
                 let toshiba_dvdElement = null;
                 
-                toshiba.addEventListener('mouseenter', function() {
+                const startAnimation = () => {
                     // Clear any existing animation before starting a new one
                     if (toshiba_dvdAnimation) {
                         cancelAnimationFrame(toshiba_dvdAnimation);
@@ -317,9 +318,9 @@
                     };
                     
                     toshiba_dvdAnimation = requestAnimationFrame(animate);
-                });
+                };
                 
-                toshiba.addEventListener('mouseleave', function() {
+                const stopAnimation = () => {
                     // Stop animation
                     if (toshiba_dvdAnimation) {
                         cancelAnimationFrame(toshiba_dvdAnimation);
@@ -331,7 +332,13 @@
                         toshiba_dvdElement.remove();
                         toshiba_dvdElement = null;
                     }
-                });
+                };
+                
+                // Only activate on the visible toshiba layers
+                toshibaLayer1.addEventListener('mouseenter', startAnimation);
+                toshibaLayer1.addEventListener('mouseleave', stopAnimation);
+                toshibaLayer2.addEventListener('mouseenter', startAnimation);
+                toshibaLayer2.addEventListener('mouseleave', stopAnimation);
             }
         });
 
