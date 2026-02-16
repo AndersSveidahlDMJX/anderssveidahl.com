@@ -52,15 +52,15 @@
 
     <!-- WORK text under each column -->
     <div class="center-text">
-      <p>FREE TIME</p>
+      <p data-en-text="FREE TIME" data-da-text="FRITID">FREE TIME</p>
     </div>
     
     <div class="center-text center-column">
-      <p>WORK</p>
+      <p data-en-text="WORK" data-da-text="ARBEJDE">WORK</p>
     </div>
     
     <div class="center-text right-column">
-      <p>ABOUT ME</p>
+      <p data-en-text="ABOUT ME" data-da-text="OM MIG">ABOUT ME</p>
     </div>
 
     <header>
@@ -159,6 +159,7 @@
             const workTextLeft = document.querySelector('.work-text-left');
             const otherText = document.querySelector('.other-text');
             const aboutText = document.querySelector('.about-text');
+            const centerTexts = document.querySelectorAll('.center-text p');
             const langButtons = document.querySelectorAll('.lang-btn');
 
             const dataAttr = lang === 'en' ? 'data-en-text' : 'data-da-text';
@@ -178,6 +179,11 @@
             if (aboutText) {
                 aboutText.textContent = aboutText.getAttribute(dataAttr);
             }
+            
+            // Update center text elements
+            centerTexts.forEach(el => {
+                el.textContent = el.getAttribute(dataAttr);
+            });
 
             // Update active button
             langButtons.forEach(btn => {
