@@ -653,6 +653,19 @@ body.about-page header {
   flex-shrink: 0;
 }
 
+/* Other/Free Time Page Styles */
+body.other-page {
+  height: 100vh;
+  background-color: #000000;
+  background-image: none;
+  display: flex;
+  flex-direction: column;
+}
+
+body.other-page header {
+  flex-shrink: 0;
+}
+
 .about-center-content {
   text-align: center;
   width: 100%;

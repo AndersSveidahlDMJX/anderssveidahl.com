@@ -4,21 +4,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Other</title>
+    <title>Free Time</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 
 <body class="other-page">
     <header>
         <a href="index.html" class="back-arrow">←</a>
-        <h1>Anders Sveidahl</h1>
-        <a href="about.html" class="about-link">About</a>
-    </header>
-    <div class="subpage-container">
-        <div class="other-content">
-            <h1>Other</h1>
+        <div class="language-switch">
+            <button class="lang-btn active" data-lang="en">EN</button>
+            <span class="lang-divider">/</span>
+            <button class="lang-btn" data-lang="da">DA</button>
         </div>
-    </div>
+    </header>
+    <script>
+        // Language functionality
+        let currentLanguage = localStorage.getItem('language') || 'en';
+        
+        function setLanguage(lang) {
+            currentLanguage = lang;
+            localStorage.setItem('language', lang);
+            
+            const langButtons = document.querySelectorAll('.lang-btn');
+            langButtons.forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.dataset.lang === lang) {
+                    btn.classList.add('active');
+                }
+            });
+        }
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            const langButtons = document.querySelectorAll('.lang-btn');
+            langButtons.forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    setLanguage(this.dataset.lang);
+                });
+            });
+            
+            setLanguage(currentLanguage);
+        });
+    </script>
 </body>
 
 </html>
