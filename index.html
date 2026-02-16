@@ -267,7 +267,7 @@
                     x = Math.max(0, Math.min(x, window.innerWidth - 150));
                     y = Math.max(0, Math.min(y, window.innerHeight - 150));
                     
-                    const speed = 5;
+                    const speed = 10;
                     let vx, vy;
                     const quadrant = Math.floor(Math.random() * 4);
                     switch(quadrant) {
@@ -286,13 +286,9 @@
                     toshiba_dvdElement.style.backgroundImage = slides[currentImageIndex].style.backgroundImage;
                     
                     // Animation loop using requestAnimationFrame for smooth performance
-                    let lastTime = performance.now();
-                    const animate = (currentTime) => {
-                        const deltaTime = (currentTime - lastTime) / 1000;
-                        lastTime = currentTime;
-                        
-                        x += vx * deltaTime * 60;
-                        y += vy * deltaTime * 60;
+                    const animate = () => {
+                        x += vx;
+                        y += vy;
                         
                         // Check for collisions with edges
                         if (x <= 0 || x + 150 >= window.innerWidth) {
