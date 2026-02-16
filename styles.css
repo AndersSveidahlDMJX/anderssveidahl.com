@@ -68,7 +68,7 @@ header {
   padding: 20px;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   box-shadow: none;
   position: relative;
   margin-bottom: 0;
@@ -76,18 +76,12 @@ header {
 }
 
 .language-switch {
-  position: absolute;
-  right: 20px;
-  top: 20px;
   display: flex;
   align-items: center;
   gap: 8px;
 }
 
 .back-arrow {
-  position: absolute;
-  left: 20px;
-  top: 20px;
   color: #FFFFFF;
   font-size: 24px;
   text-decoration: none;
@@ -134,6 +128,12 @@ header h1 {
   margin-top: 60px;
   letter-spacing: 5px;
   text-align: center;
+}
+
+body.work-page header h1,
+body.about-page header h1 {
+  display: none;
+}
 }
 
 .back-arrow {
