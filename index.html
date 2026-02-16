@@ -226,7 +226,7 @@
                 const startAnimation = () => {
                     // Clear any existing animation before starting a new one
                     if (toshiba_dvdAnimation) {
-                        cancelAnimationFrame(toshiba_dvdAnimation);
+                        clearInterval(toshiba_dvdAnimation);
                         toshiba_dvdAnimation = null;
                     }
                     if (toshiba_dvdElement && toshiba_dvdElement.parentNode) {
@@ -285,8 +285,8 @@
                     // Set initial image
                     toshiba_dvdElement.style.backgroundImage = slides[currentImageIndex].style.backgroundImage;
                     
-                    // Animation loop using requestAnimationFrame for smooth performance
-                    const animate = () => {
+                    // Animation loop - use setInterval for smooth 60fps animation
+                    toshiba_dvdAnimation = setInterval(() => {
                         x += vx;
                         y += vy;
                         
@@ -308,18 +308,14 @@
                         y = Math.max(0, Math.min(y, window.innerHeight - 150));
                         
                         // Update position
-                        toshiba_dvdElement.style.transform = `translate3d(${x}px, ${y}px, 0)`;
-                        
-                        toshiba_dvdAnimation = requestAnimationFrame(animate);
-                    };
-                    
-                    toshiba_dvdAnimation = requestAnimationFrame(animate);
+                        toshiba_dvdElement.style.transform = `translate3d(${Math.round(x)}px, ${Math.round(y)}px, 0)`;
+                    }, 16); // ~60fps
                 };
                 
                 const stopAnimation = () => {
                     // Stop animation
                     if (toshiba_dvdAnimation) {
-                        cancelAnimationFrame(toshiba_dvdAnimation);
+                        clearInterval(toshiba_dvdAnimation);
                         toshiba_dvdAnimation = null;
                     }
                     
