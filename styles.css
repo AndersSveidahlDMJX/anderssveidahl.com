@@ -612,14 +612,26 @@ body.work-page {
 
 /* About Page Styles */
 body.about-page {
-  height: auto;
+  height: 100vh;
   background-color: #000000;
   background-image: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
-.about-content {
-  padding: 40px 20px;
+.about-center-content {
+  text-align: center;
+  width: 100%;
+  max-width: 90%;
+}
+
+.about-bio {
+  font-family: "Impact Label", sans-serif;
+  font-size: 2.5rem;
   color: #FFFFFF;
-  max-width: 800px;
-  margin: 0 auto;
+  margin: 0;
+  padding: 0;
+  line-height: 1.4;
 }

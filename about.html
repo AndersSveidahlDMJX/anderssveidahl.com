@@ -11,17 +11,14 @@
 <body class="about-page">
     <header>
         <a href="index.html" class="back-arrow">←</a>
-        <h1>Anders Sveidahl</h1>
         <div class="language-switch">
             <button class="lang-btn active" data-lang="en">EN</button>
             <span class="lang-divider">/</span>
             <button class="lang-btn" data-lang="da">DA</button>
         </div>
     </header>
-    <div class="subpage-container">
-        <div class="about-content">
-            <h1>About</h1>
-        </div>
+    <div class="about-center-content">
+        <p class="about-bio" data-en-text="my name is anders i like advertising and fossils:)" data-da-text="mit navn er anders jeg holder af reklame og fossiler:)">my name is anders i like advertising and fossils:)</p>
     </div>
     <script>
         // Language functionality
@@ -32,15 +29,34 @@
             localStorage.setItem('language', lang);
             
             const langButtons = document.querySelectorAll('.lang-btn');
+            const bioParagraph = document.querySelector('.about-bio');
+            
             langButtons.forEach(btn => {
                 btn.classList.remove('active');
                 if (btn.dataset.lang === lang) {
                     btn.classList.add('active');
                 }
             });
+            
+            // Update bio text
+            if (bioParagraph) {
+                const dataAttr = lang === 'en' ? 'data-en-text' : 'data-da-text';
+                bioParagraph.textContent = bioParagraph.getAttribute(dataAttr);
+            }
         }
         
         document.addEventListener('DOMContentLoaded', function() {
             const langButtons = document.querySelectorAll('.lang-btn');
             langButtons.forEach(btn => {
-                btn.addEventListener('click', function(e) {\n                    e.preventDefault();\n                    setLanguage(this.dataset.lang);\n                });\n            });\n            \n            setLanguage(currentLanguage);\n        });\n    </script>\n</body>\n\n</html>
+                btn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    setLanguage(this.dataset.lang);
+                });
+            });
+            
+            setLanguage(currentLanguage);
+        });
+    </script>
+</body>
+
+</html>
