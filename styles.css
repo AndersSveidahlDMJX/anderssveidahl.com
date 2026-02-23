@@ -613,25 +613,30 @@ body.work-page header {
   background-position: center;
   overflow: hidden;
   cursor: pointer;
-  transition: transform 0.3s ease, filter 0.3s ease;
+  transition: filter 0.3s ease;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
 .image-container:hover {
-  transform: scale(1.05);
-  filter: brightness(1.1);
+  filter: brightness(0.8);
 }
 
 .work-label {
   font-family: "Impact Label", sans-serif;
   font-size: 1.5rem;
   color: #FFFFFF;
-  background-color: rgba(0, 0, 0, 0.6);
+  background-color: transparent;
   padding: 10px 20px;
-  border-radius: 4px;
+  border-radius: 0;
   text-decoration: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.image-container:hover .work-label {
+  opacity: 1;
 }
 
 /* About Page Styles */
