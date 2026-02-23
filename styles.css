@@ -619,17 +619,30 @@ body.work-page header {
   justify-content: center;
 }
 
-.image-container:hover {
-  filter: brightness(0.5);
+.image-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.image-container:hover::before {
+  opacity: 1;
 }
 
 .work-label {
+  position: relative;
+  z-index: 1;
   font-family: Helvetica, sans-serif;
   font-size: 1.5rem;
   color: #FFFFFF;
-  background-color: transparent;
   padding: 10px 20px;
-  border-radius: 0;
   text-decoration: none;
   opacity: 0;
   transition: opacity 0.3s ease;
