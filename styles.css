@@ -389,7 +389,7 @@ body.about-page header h1 {
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 5;
+  z-index: 20;
   pointer-events: auto;
   text-decoration: none;
   background-image: url('assets/img/moleskine.png');
