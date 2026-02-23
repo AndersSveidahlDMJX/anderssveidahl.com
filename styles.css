@@ -620,11 +620,11 @@ body.work-page header {
 }
 
 .image-container:hover {
-  filter: brightness(0.8);
+  filter: brightness(0.5);
 }
 
 .work-label {
-  font-family: "Impact Label", sans-serif;
+  font-family: Helvetica, sans-serif;
   font-size: 1.5rem;
   color: #FFFFFF;
   background-color: transparent;
