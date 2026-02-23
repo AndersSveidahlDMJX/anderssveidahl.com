@@ -641,6 +641,8 @@ body.work-page header {
   z-index: 1;
   font-family: Helvetica, sans-serif;
   font-size: 1.5rem;
+  font-weight: bold;
+  text-transform: uppercase;
   color: #FFFFFF;
   padding: 10px 20px;
   text-decoration: none;
