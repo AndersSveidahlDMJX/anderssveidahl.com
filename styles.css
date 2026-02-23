@@ -587,9 +587,9 @@ body.work-page header {
 }
 
 .subpage-container {
-  padding: 100px 20px 40px 20px;
-  max-width: 100%;
   flex-grow: 1;
+  display: flex;
+  align-items: stretch;
 }
 
 .work-content {
@@ -599,18 +599,18 @@ body.work-page header {
 .image-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
+  grid-template-rows: repeat(2, 1fr);
+  gap: 3px;
   width: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
+  height: 100%;
+  margin: 0;
+  padding: 3px;
 }
 
 .image-container {
   position: relative;
-  aspect-ratio: 1;
   background-size: cover;
   background-position: center;
-  border-radius: 8px;
   overflow: hidden;
   cursor: pointer;
   transition: transform 0.3s ease, filter 0.3s ease;
