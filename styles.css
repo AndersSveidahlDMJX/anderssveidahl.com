@@ -654,6 +654,10 @@ body.work-page header {
   opacity: 1;
 }
 
+a.image-container {
+  text-decoration: none;
+}
+
 /* About Page Styles */
 body.about-page {
   height: 100vh;
